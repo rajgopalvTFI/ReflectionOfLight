@@ -2,26 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Reflection of Light – Quiz</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reflection of Light - Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --bg: #0b1020;
-      --bg-alt: #151b30;
-      --bg-card: #1d2340;
-      --accent: #4cc9f0;
-      --accent-soft: rgba(76, 201, 240, 0.18);
-      --accent-strong: #fca311;
-      --text-main: #f3f4ff;
-      --text-muted: #a0a4c0;
-      --error: #ff4b81;
-      --success: #3ddc97;
-      --border-subtle: #2a3152;
-      --shadow-soft: 0 18px 45px rgba(0,0,0,0.45);
-      --radius-lg: 18px;
-      --radius-pill: 999px;
-      --transition-fast: 0.18s ease-out;
-      --transition-med: 0.28s ease;
+      --bg: #f5f7ff;
+      --card-bg: #ffffff;
+      --accent: #3b82f6;
+      --accent-soft: #dbeafe;
+      --accent-dark: #1d4ed8;
+      --text-main: #111827;
+      --text-muted: #4b5563;
+      --border-subtle: #e5e7eb;
+      --correct: #22c55e;
+      --incorrect: #ef4444;
+      --warning: #f97316;
     }
 
     * {
@@ -30,1710 +25,1769 @@
 
     body {
       margin: 0;
-      min-height: 100vh;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at 0% 0%, #253059 0, #090e1a 55%);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #e0f2fe 0, #f5f7ff 40%, #f9fafb 100%);
       color: var(--text-main);
-      display: flex;
-      justify-content: center;
-      padding: 24px 12px 40px;
     }
 
-    .app-shell {
-      width: 100%;
+    .page {
       max-width: 1100px;
-      background: linear-gradient(145deg, rgba(255,255,255,0.02), rgba(24,33,66,0.9));
-      border-radius: 26px;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(255,255,255,0.04);
-      padding: 22px 22px 26px;
-      backdrop-filter: blur(20px);
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 3rem;
     }
 
-    header.app-header {
+    header.hero {
+      background: linear-gradient(135deg, #1d4ed8, #4f46e5);
+      color: white;
+      border-radius: 1.5rem;
+      padding: 1.75rem 1.75rem 1.5rem;
+      box-shadow: 0 20px 40px rgba(15, 23, 42, 0.35);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1.75rem;
+    }
+
+    header.hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 10% 0, rgba(255, 255, 255, 0.18), transparent 55%),
+                  radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.35), transparent 60%);
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
       display: flex;
       flex-wrap: wrap;
+      gap: 1rem 2rem;
+      align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      align-items: center;
-      margin-bottom: 18px;
-      padding-bottom: 14px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
-    .title-block h1 {
-      margin: 0;
-      font-size: 1.6rem;
+    .hero-text h1 {
+      margin: 0 0 0.5rem;
+      font-size: clamp(1.9rem, 3vw, 2.2rem);
       letter-spacing: 0.03em;
+    }
+
+    .hero-text p {
+      margin: 0.15rem 0;
+      font-size: 0.98rem;
+      opacity: 0.95;
+    }
+
+    .hero-badges {
       display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .title-pill {
-      font-size: 0.7rem;
-      padding: 3px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.16);
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      color: var(--accent);
-      background: radial-gradient(circle at 0 0, rgba(255,255,255,0.12), transparent 55%);
-    }
-
-    .subtitle {
+      flex-direction: column;
+      gap: 0.4rem;
       font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-top: 6px;
-    }
-
-    .subtitle span.highlight {
-      color: var(--accent-strong);
-      font-weight: 600;
-    }
-
-    .badge-strip {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      font-size: 0.75rem;
-      color: var(--text-muted);
+      align-items: flex-end;
     }
 
     .badge {
-      padding: 4px 10px;
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(9, 12, 31, 0.85);
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.3);
+      border: 1px solid rgba(191, 219, 254, 0.6);
+      backdrop-filter: blur(6px);
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 0.4rem;
     }
 
-    .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: var(--accent-strong);
-      box-shadow: 0 0 10px rgba(252,163,17,0.6);
+    .badge span.icon {
+      font-size: 1rem;
     }
 
-    /* Section navigation */
+    .section {
+      margin-bottom: 2rem;
+    }
 
-    .section-nav {
+    .section h2 {
+      font-size: 1.2rem;
+      margin: 0 0 0.75rem;
       display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 16px;
+      align-items: center;
+      gap: 0.5rem;
     }
 
-    .section-tab {
-      flex: 1 1 135px;
-      min-width: 0;
+    .section h2 span.tagline {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .muted {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* Big overview / mental map */
+
+    .overview-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 880px) {
+      .overview-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 1.25rem;
+      padding: 1.25rem 1.3rem;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.08);
+      border: 1px solid rgba(209, 213, 219, 0.7);
+    }
+
+    .card h3 {
+      margin: 0 0 0.7rem;
+      font-size: 1rem;
+    }
+
+    .big-map {
       position: relative;
-      padding: 8px 10px;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--border-subtle);
-      background: linear-gradient(145deg, rgba(21,27,48,0.9), rgba(7,10,24,0.9));
-      color: var(--text-muted);
-      font-size: 0.8rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      cursor: pointer;
-      transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
     }
 
-    .section-tab span.icon {
-      font-size: 0.85rem;
-    }
-
-    .section-tab.active {
-      border-color: var(--accent);
-      color: var(--text-main);
-      background: radial-gradient(circle at 0 0, rgba(76,201,240,0.3), rgba(17,24,48,0.96));
-      box-shadow: 0 0 0 1px rgba(76,201,240,0.18), 0 10px 25px rgba(0,0,0,0.5);
-    }
-
-    .section-tab:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 22px rgba(0,0,0,0.45);
-    }
-
-    /* View toggles (Overview / Q&A) */
-
-    .view-toggle-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    .view-buttons {
-      display: inline-flex;
-      border-radius: var(--radius-pill);
-      padding: 2px;
-      background: rgba(8,12,32,0.85);
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-
-    .view-btn {
-      padding: 7px 14px;
-      border-radius: var(--radius-pill);
-      border: none;
-      background: transparent;
-      color: var(--text-muted);
-      font-size: 0.8rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      cursor: pointer;
-      transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
-    }
-
-    .view-btn span.icon {
-      font-size: 0.85rem;
-    }
-
-    .view-btn.active {
-      background: radial-gradient(circle at 0 0, rgba(76,201,240,0.3), rgba(20,27,54,0.96));
-      color: var(--text-main);
-      transform: translateY(-1px);
-    }
-
-    .view-btn:hover {
-      transform: translateY(-1px);
-    }
-
-    .mini-info {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-
-    .mini-info span.em {
-      color: var(--accent);
-      font-weight: 500;
-    }
-
-    /* Main content area */
-
-    .content-card {
-      background: rgba(9, 13, 34, 0.95);
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.08);
-      padding: 18px 16px 18px;
-      min-height: 260px;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.55);
-    }
-
-    /* Mental map */
-
-    .section-intro {
-      margin-bottom: 12px;
-      font-size: 0.9rem;
-      color: var(--text-muted);
-    }
-
-    .mental-map {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 6px;
-    }
-
-    .map-root {
-      padding: 10px 12px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, rgba(45, 58, 110, 0.9), rgba(20,24,54,0.9));
-      border: 1px solid rgba(112, 160, 255, 0.6);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.9rem;
-      font-weight: 500;
-    }
-
-    .map-root .bubble {
-      width: 18px;
-      height: 18px;
+    .map-main-node {
+      background: var(--accent);
+      color: white;
+      padding: 0.7rem 0.9rem;
       border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #ffffff, #4cc9f0);
-      box-shadow: 0 0 18px rgba(76,201,240,0.9);
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 1rem;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.36);
+    }
+
+    .map-main-node small {
+      display: block;
+      font-weight: 400;
+      font-size: 0.78rem;
+      opacity: 0.9;
+    }
+
+    .map-arrow-down {
+      text-align: center;
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+      color: var(--accent-dark);
     }
 
     .map-branches {
-      margin-left: 12px;
-      border-left: 1px dashed rgba(255,255,255,0.14);
-      padding-left: 14px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 1.1rem; /* more space between branches */
     }
 
-    .map-branch {
-      position: relative;
-      padding: 8px 10px;
-      border-radius: 12px;
-      background: rgba(11,17,40,0.9);
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-
-    .map-branch::before {
-      content: "";
-      position: absolute;
-      left: -14px;
-      top: 50%;
-      width: 10px;
-      height: 1px;
-      background: rgba(255,255,255,0.35);
-    }
-
-    .branch-title {
-      font-size: 0.83rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--accent-strong);
-      margin-bottom: 4px;
-    }
-
-    .branch-items {
+    .map-branch-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 5px;
-      font-size: 0.8rem;
+      align-items: center;
+      gap: 0.5rem;
     }
 
-    .branch-pill {
-      padding: 3px 8px;
+    .map-node {
+      padding: 0.45rem 0.8rem;
       border-radius: 999px;
-      background: rgba(32,49,96,0.86);
-      border: 1px solid rgba(130,170,255,0.5);
+      border: 1px dashed #c4c4d4;
+      background: #f9fafb;
+      font-size: 0.87rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .map-node span.label {
+      font-weight: 600;
+    }
+
+    .map-node span.desc {
+      font-weight: 400;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+    }
+
+    .map-arrow-right {
+      font-size: 1.1rem;
+      color: #9ca3af;
+    }
+
+    .how-to-list {
+      padding-left: 1.1rem;
+      margin: 0.4rem 0 0.9rem;
+      font-size: 0.9rem;
+    }
+
+    .how-to-list li {
+      margin-bottom: 0.35rem;
+    }
+
+    .pill-list {
+      list-style: none;
+      padding: 0;
+      margin: 0.4rem 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      font-size: 0.83rem;
+    }
+
+    .pill-list li {
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
       white-space: nowrap;
     }
 
-    /* Quiz layout */
+    /* Section cards */
 
-    .quiz-layout {
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1rem;
+    }
+
+    .section-card {
+      border-radius: 1rem;
+      padding: 1rem;
+      background: linear-gradient(135deg, #ffffff, #eff6ff);
+      border: 1px solid #dbeafe;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 0.6rem;
+      position: relative;
+      overflow: hidden;
     }
 
-    .map-toggle-bar {
-      border-radius: 12px;
-      padding: 8px 10px;
-      background: rgba(15,18,38,0.9);
-      border: 1px dashed rgba(255,255,255,0.18);
+    .section-card h3 {
+      margin: 0;
+      font-size: 1rem;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      font-size: 0.78rem;
-      cursor: pointer;
+      gap: 0.45rem;
     }
 
-    .map-toggle-bar span.label {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
+    .section-chip {
+      font-size: 0.75rem;
+      padding: 0.1rem 0.45rem;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, 0.08);
+      border: 1px solid rgba(191, 219, 254, 0.8);
+      color: var(--accent-dark);
+    }
+
+    .section-card p {
+      margin: 0;
+      font-size: 0.86rem;
       color: var(--text-muted);
     }
 
-    .map-toggle-bar span.label strong {
-      color: var(--accent);
+    .section-actions {
+      margin-top: 0.4rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      border: none;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
       font-weight: 500;
+      transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.12s ease;
+      white-space: nowrap;
     }
 
-    .map-toggle-bar span.chevron {
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(37, 99, 235, 0.5);
+      background: var(--accent-dark);
+    }
+
+    .btn-outline {
+      background: white;
+      border: 1px solid #cbd5f5;
+      color: var(--accent-dark);
+    }
+
+    .btn-outline:hover {
+      background: #eff6ff;
+      transform: translateY(-1px);
+    }
+
+    /* Section overview (mental map by section) */
+
+    .section-overview {
+      margin-top: 1.2rem;
+    }
+
+    .section-overview h3 {
+      margin-top: 0;
+      font-size: 1rem;
+    }
+
+    .section-overview-block {
+      margin-bottom: 1.1rem;
+      padding: 0.8rem 0.9rem;
+      border-radius: 0.9rem;
+      border: 1px dashed #cbd5f5;
+      background: #f9fafb;
+    }
+
+    .section-overview-block strong {
+      display: inline-block;
+      margin-bottom: 0.35rem;
+    }
+
+    .section-overview-arrows {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    /* Quiz area */
+
+    #quiz-area {
+      margin-top: 1.8rem;
+    }
+
+    #quiz-container {
+      margin-top: 0.7rem;
+      display: none;
+    }
+
+    #quiz-container.active {
+      display: block;
+    }
+
+    .quiz-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .quiz-header-title {
+      font-weight: 600;
+      font-size: 0.98rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      align-items: center;
+    }
+
+    .quiz-header-title span.section-name {
+      color: var(--accent-dark);
+    }
+
+    .quiz-header-title small {
+      font-weight: 400;
+      color: var(--text-muted);
       font-size: 0.8rem;
-      transition: transform var(--transition-fast);
     }
 
-    .map-toggle-bar.expanded span.chevron {
-      transform: rotate(90deg);
+    .toggle-map-btn {
+      padding: 0.3rem 0.75rem;
+      font-size: 0.8rem;
+      border-radius: 999px;
+      border: 1px dashed #bfdbfe;
+      background: #eff6ff;
+      color: var(--accent-dark);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
     }
 
-    .quiz-main-grid {
+    .toggle-map-btn span.icon {
+      font-size: 0.9rem;
+    }
+
+    .quiz-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 10px;
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.3fr);
+      gap: 1rem;
+      align-items: flex-start;
     }
 
-    .quiz-main-grid.with-map {
-      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-    }
-
-    .quiz-map-panel {
-      border-radius: 14px;
-      background: radial-gradient(circle at 0 0, rgba(76,201,240,0.14), rgba(12,17,40,0.96));
-      border: 1px solid rgba(95, 151, 255, 0.7);
-      padding: 10px 10px;
-      max-height: 260px;
-      overflow: auto;
+    @media (max-width: 900px) {
+      .quiz-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      #section-map-panel {
+        order: -1;
+      }
     }
 
     .quiz-card {
-      border-radius: 16px;
-      background: radial-gradient(circle at 0 0, rgba(76,201,240,0.08), rgba(13,18,40,0.95));
-      border: 1px solid rgba(255,255,255,0.16);
-      padding: 14px 14px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
+      background: var(--card-bg);
+      border-radius: 1rem;
+      padding: 1rem;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
     }
 
-    .quiz-header-row {
+    .progress-bar-wrapper {
+      height: 0.55rem;
+      border-radius: 999px;
+      background: #e5e7eb;
+      overflow: hidden;
+      margin-bottom: 0.7rem;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #22c55e, #3b82f6);
+      transition: width 0.25s ease;
+    }
+
+    .quiz-status-line {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .quiz-title {
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: #e2e7ff;
-    }
-
-    .quiz-meta {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.75rem;
+      align-items: baseline;
+      margin-bottom: 0.4rem;
+      font-size: 0.83rem;
       color: var(--text-muted);
     }
 
-    .chip {
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.18);
-      background: rgba(9,12,31,0.9);
-    }
-
-    .progress-track {
-      width: 100%;
-      height: 6px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      overflow: hidden;
-      margin-top: 4px;
-    }
-
-    .progress-fill {
-      height: 100%;
-      width: 0;
-      border-radius: inherit;
-      background: linear-gradient(90deg, var(--accent), var(--accent-strong));
-      transition: width var(--transition-med);
-    }
-
-    .question-text {
-      font-size: 0.92rem;
-      margin-top: 4px;
+    .quiz-question-text {
+      font-size: 0.98rem;
+      margin-bottom: 0.75rem;
+      font-weight: 500;
     }
 
     .options-list {
       list-style: none;
-      margin: 4px 0 0 0;
       padding: 0;
+      margin: 0.3rem 0 0.6rem;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 0.45rem;
     }
 
-    .option-btn {
-      width: 100%;
-      text-align: left;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(8,12,32,0.92);
-      padding: 8px 10px;
-      font-size: 0.85rem;
-      color: var(--text-main);
-      cursor: pointer;
+    .option-item {
+      border-radius: 0.65rem;
+      border: 1px solid #e5e7eb;
+      padding: 0.4rem 0.55rem;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast), color var(--transition-fast);
+      gap: 0.5rem;
+      cursor: pointer;
+      transition: border 0.12s ease, background 0.12s ease, transform 0.05s ease;
+      background: #f9fafb;
     }
 
-    .option-label {
-      font-weight: 500;
-      font-size: 0.8rem;
-      opacity: 0.75;
-      margin-right: 4px;
+    .option-item:hover {
+      border-color: #bfdbfe;
+      background: #eff6ff;
+      transform: translateY(-1px);
+    }
+
+    .option-item input {
+      margin: 0;
+      accent-color: var(--accent);
+    }
+
+    .option-letter {
+      font-weight: 600;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      width: 1.1rem;
+      text-align: center;
     }
 
     .option-text {
-      flex: 1;
+      font-size: 0.9rem;
     }
 
-    .option-icon {
-      font-size: 1rem;
-      opacity: 0;
-      transform: scale(0.5);
-      transition: opacity var(--transition-fast), transform var(--transition-fast);
+    .option-item.selected {
+      border-color: var(--accent);
+      background: #e0ecff;
     }
 
-    .option-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.55);
-      border-color: rgba(76,201,240,0.6);
-    }
-
-    .option-btn.selected {
-      border-color: rgba(76,201,240,0.9);
-      background: radial-gradient(circle at 0 0, rgba(76,201,240,0.3), rgba(16,20,46,0.97));
-    }
-
-    .option-btn.correct {
-      border-color: rgba(61,220,151,0.9);
-      box-shadow: 0 0 0 1px rgba(61,220,151,0.6);
-      background: radial-gradient(circle at 0 0, rgba(61,220,151,0.3), rgba(12,24,32,0.96));
-    }
-
-    .option-btn.incorrect {
-      border-color: rgba(255,75,129,0.9);
-      background: radial-gradient(circle at 0 0, rgba(255,75,129,0.3), rgba(24,12,24,0.96));
-    }
-
-    .option-btn.correct .option-icon,
-    .option-btn.incorrect .option-icon {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    .feedback-row {
+    .quiz-nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 8px;
-      margin-top: 4px;
-      font-size: 0.8rem;
+      margin-top: 0.7rem;
+      gap: 0.5rem;
+      flex-wrap: wrap;
     }
 
-    .feedback-text {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      min-height: 20px;
-    }
-
-    .feedback-text .status-dot {
-      width: 9px;
-      height: 9px;
-      border-radius: 999px;
-    }
-
-    .feedback-text.correct .status-dot {
-      background: var(--success);
-      box-shadow: 0 0 8px rgba(61,220,151,0.8);
-    }
-
-    .feedback-text.incorrect .status-dot {
-      background: var(--error);
-      box-shadow: 0 0 8px rgba(255,75,129,0.8);
-    }
-
-    .nav-buttons {
+    .quiz-nav-left {
       display: flex;
-      gap: 8px;
-      justify-content: flex-end;
-      margin-top: 6px;
+      gap: 0.4rem;
+      flex-wrap: wrap;
     }
 
-    .btn {
-      border-radius: var(--radius-pill);
-      padding: 7px 14px;
-      font-size: 0.83rem;
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast), opacity var(--transition-fast);
+    .quiz-nav-right {
+      margin-left: auto;
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-      color: #050711;
-      font-weight: 600;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
-    }
-
-    .btn-primary:disabled {
-      opacity: 0.55;
-      cursor: default;
-      box-shadow: none;
-      transform: none;
-    }
-
-    .btn-primary:not(:disabled):hover {
-      transform: translateY(-1px);
-      box-shadow: 0 16px 30px rgba(0,0,0,0.7);
+    .btn-small {
+      padding: 0.32rem 0.7rem;
+      font-size: 0.8rem;
     }
 
     .btn-ghost {
       background: transparent;
-      border: 1px solid rgba(255,255,255,0.2);
+      border: none;
       color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.8rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
     }
 
     .btn-ghost:hover {
-      background: rgba(255,255,255,0.06);
-      transform: translateY(-1px);
+      color: var(--accent-dark);
     }
 
-    /* Result summary */
-
-    .result-card {
-      margin-top: 10px;
-      border-radius: 16px;
-      border: 1px solid rgba(61,220,151,0.7);
-      background: radial-gradient(circle at 0 0, rgba(61,220,151,0.3), rgba(12,20,32,0.97));
-      padding: 12px 13px;
-      font-size: 0.85rem;
+    #section-map-panel {
+      border-radius: 1rem;
+      border: 1px dashed #cbd5f5;
+      background: #eff6ff;
+      padding: 0.8rem 0.9rem;
+      font-size: 0.86rem;
+      display: none;
     }
 
-    .result-header {
+    #section-map-panel.active {
+      display: block;
+    }
+
+    #section-map-panel h4 {
+      margin: 0 0 0.3rem;
+      font-size: 0.9rem;
+      color: var(--accent-dark);
+    }
+
+    #section-map-panel ul {
+      margin: 0.3rem 0 0;
+      padding-left: 1.1rem;
+    }
+
+    #section-map-panel li {
+      margin-bottom: 0.3rem;
+    }
+
+    /* Results */
+
+    #results-card {
+      display: none;
+      margin-top: 1rem;
+    }
+
+    #results-card.active {
+      display: block;
+    }
+
+    .results-header {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
-      gap: 8px;
+      gap: 0.6rem;
       flex-wrap: wrap;
-      margin-bottom: 8px;
     }
 
-    .result-header strong {
-      font-size: 0.92rem;
-    }
-
-    .answer-key {
-      margin-top: 6px;
-      border-radius: 12px;
-      background: rgba(4,9,20,0.92);
-      border: 1px solid rgba(255,255,255,0.17);
-      max-height: 200px;
-      overflow: auto;
-      padding: 8px 8px 6px;
-      font-size: 0.78rem;
-    }
-
-    .answer-row {
-      margin-bottom: 6px;
-    }
-
-    .answer-row span.qno {
+    .results-score {
       font-weight: 600;
-      color: var(--accent);
-      margin-right: 6px;
+      font-size: 0.95rem;
     }
 
-    /* Footer */
+    .results-score span.good {
+      color: var(--correct);
+    }
+
+    .results-score span.bad {
+      color: var(--incorrect);
+    }
+
+    .results-summary {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+    }
+
+    .results-list {
+      margin-top: 0.7rem;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 0.5rem;
+      max-height: 280px;
+      overflow-y: auto;
+    }
+
+    .result-item {
+      padding: 0.45rem 0.45rem 0.45rem 0;
+      border-bottom: 1px dashed #e5e7eb;
+      font-size: 0.85rem;
+    }
+
+    .result-item:last-child {
+      border-bottom: none;
+    }
+
+    .result-item-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.4rem;
+      align-items: baseline;
+    }
+
+    .result-pill {
+      padding: 0.05rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .result-pill.correct {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .result-pill.incorrect {
+      background: #fee2e2;
+      color: #991b1b;
+      border: 1px solid #fecaca;
+    }
+
+    .result-q {
+      margin-top: 0.2rem;
+    }
+
+    .result-line {
+      margin-top: 0.15rem;
+    }
+
+    .result-line strong {
+      font-weight: 600;
+    }
 
     footer {
-      margin-top: 16px;
-      font-size: 0.75rem;
-      color: var(--text-muted);
       text-align: center;
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
     }
 
-    footer a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 780px) {
-      .app-shell {
-        padding: 18px 14px 22px;
-      }
-      .quiz-main-grid.with-map {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .quiz-map-panel {
-        max-height: 180px;
-      }
+    footer span.heart {
+      color: #f97373;
     }
   </style>
 </head>
 <body>
-  <div class="app-shell">
-    <header class="app-header">
-      <div class="title-block">
-        <h1>
-          <span class="title-pill">Physics • Light</span>
-          Reflection of Light
-        </h1>
-        <div class="subtitle">
-          Gamified concept map &amp; quiz • Created by
-          <span class="highlight">Rajgopal V</span> • Grade 9,
-          <span class="highlight">VarshaNagar MPS</span>
+  <div class="page">
+    <header class="hero">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1>Reflection of Light</h1>
+          <p>Created by <strong>Rajgopal V</strong></p>
+          <p>For Grade 9, <strong>VarshaNagar MPS</strong></p>
         </div>
-      </div>
-      <div class="badge-strip">
-        <div class="badge">
-          <span class="dot"></span>
-          Concept Map + MCQ Quiz
-        </div>
-        <div class="badge">
-          ⏱️ Timed practice friendly
+        <div class="hero-badges">
+          <div class="badge">
+            <span class="icon">🎯</span>
+            <span>5 Sections &bull; Concept + Practice</span>
+          </div>
+          <div class="badge">
+            <span class="icon">🧠</span>
+            <span>Mental Map + Guided Q&amp;A</span>
+          </div>
+          <div class="badge">
+            <span class="icon">🏆</span>
+            <span>Progress bar &amp; score at the end</span>
+          </div>
         </div>
       </div>
     </header>
 
-    <!-- Section navigation -->
-    <nav class="section-nav" id="section-nav"></nav>
+    <!-- MAIN OVERVIEW / MENTAL MAP -->
+    <section class="section" id="overview">
+      <h2>
+        Topic Overview
+        <span class="tagline">How this lesson on Light Reflection &amp; Mirrors is organised</span>
+      </h2>
 
-    <div class="view-toggle-row">
-      <div class="view-buttons">
-        <button class="view-btn active" data-view="overview">
-          <span class="icon">🧠</span>
-          Overview (Mental Map)
-        </button>
-        <button class="view-btn" data-view="quiz">
-          <span class="icon">🎯</span>
-          Q &amp; A Quiz
-        </button>
-      </div>
-      <div class="mini-info">
-        Use the <span class="em">Overview</span> to explore the mental map, then test yourself in the
-        <span class="em">Quiz</span>. Answers unlock after each section.
-      </div>
-    </div>
+      <div class="overview-layout">
+        <!-- Big mental map -->
+        <div class="card">
+          <h3>Mental Map: Light Reflection &amp; Mirrors</h3>
+          <p class="muted" style="margin-bottom: 0.6rem;">
+            Use this as a mental map for the whole chapter. The topic is clearly broken into
+            <strong>5 sections</strong>. Each section has:
+            <strong>Overview</strong> (concept map with arrows) and <strong>Q&amp;A</strong> (quiz).
+          </p>
+          <div class="big-map">
+            <div class="map-main-node">
+              Reflection of Light &amp; Mirrors
+              <small>How light behaves when it hits mirrors</small>
+            </div>
+            <div class="map-arrow-down">↓</div>
+            <div class="map-branches">
+              <div class="map-branch-row">
+                <div class="map-node">
+                  <span class="label">1. Plane Mirrors</span>
+                  <span class="desc">Flat mirrors, image properties</span>
+                </div>
+              </div>
+              <div class="map-branch-row">
+                <div class="map-node">
+                  <span class="label">2. Spherical Mirrors</span>
+                  <span class="desc">Concave &amp; convex, basic terms</span>
+                </div>
+              </div>
+              <div class="map-branch-row">
+                <div class="map-node">
+                  <span class="label">3. Image Formation</span>
+                  <span class="desc">Where and how images are formed</span>
+                </div>
+              </div>
+              <div class="map-branch-row">
+                <div class="map-node">
+                  <span class="label">4. Formulas &amp; Calculations</span>
+                  <span class="desc">Sign convention, mirror formula, magnification</span>
+                </div>
+              </div>
+              <div class="map-branch-row">
+                <div class="map-node">
+                  <span class="label">5. Applications</span>
+                  <span class="desc">Dentist, torch, vehicles &amp; daily life</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <main class="content-card">
-      <!-- Dynamic content goes here -->
-      <div id="content"></div>
-    </main>
+        <!-- How to use this page -->
+        <div class="card">
+          <h3>How to use this quiz page</h3>
+          <ol class="how-to-list">
+            <li>Select one of the <strong>5 sections</strong> below.</li>
+            <li>Click <strong>Overview</strong> to see the mental map for that section.</li>
+            <li>Click <strong>Q&amp;A</strong> to answer questions from that section.</li>
+            <li>While answering, you can open the <strong>mental map on the side</strong> to help you.</li>
+            <li>At the end of each section, you get your <strong>score</strong> and can see the correct answers.</li>
+          </ol>
+          <p class="muted" style="margin-top:0.4rem;">
+            Sections in this quiz:
+          </p>
+          <ul class="pill-list">
+            <li>Plane Mirrors</li>
+            <li>Spherical Mirrors</li>
+            <li>Image Formation</li>
+            <li>Formulas &amp; Calculations</li>
+            <li>Applications</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION CARDS -->
+    <section class="section" id="sections">
+      <h2>
+        Choose a Section
+        <span class="tagline">Each section has its own Overview &amp; Q&amp;A</span>
+      </h2>
+
+      <div class="section-grid">
+        <article class="section-card" data-section="plane">
+          <h3>
+            Plane Mirrors
+            <span class="section-chip">Section 1</span>
+          </h3>
+          <p>Flat mirrors, virtual images, lateral inversion and simple ideas like “How tall should a mirror be?”</p>
+          <div class="section-actions">
+            <button class="btn btn-outline" data-action="overview" data-section="plane">Overview (mental map)</button>
+            <button class="btn btn-primary" data-action="quiz" data-section="plane">
+              Start Q&amp;A
+            </button>
+          </div>
+        </article>
+
+        <article class="section-card" data-section="spherical">
+          <h3>
+            Spherical Mirrors
+            <span class="section-chip">Section 2</span>
+          </h3>
+          <p>Concave and convex mirrors, pole, centre of curvature, principal axis, focus and focal length.</p>
+          <div class="section-actions">
+            <button class="btn btn-outline" data-action="overview" data-section="spherical">Overview (mental map)</button>
+            <button class="btn btn-primary" data-action="quiz" data-section="spherical">
+              Start Q&amp;A
+            </button>
+          </div>
+        </article>
+
+        <article class="section-card" data-section="image_formation">
+          <h3>
+            Image Formation
+            <span class="section-chip">Section 3</span>
+          </h3>
+          <p>Where the image appears for different object positions and how the nature of image changes.</p>
+          <div class="section-actions">
+            <button class="btn btn-outline" data-action="overview" data-section="image_formation">Overview (mental map)</button>
+            <button class="btn btn-primary" data-action="quiz" data-section="image_formation">
+              Start Q&amp;A
+            </button>
+          </div>
+        </article>
+
+        <article class="section-card" data-section="formulas">
+          <h3>
+            Formulas &amp; Calculations
+            <span class="section-chip">Section 4</span>
+          </h3>
+          <p>Cartesian sign convention, mirror formula and magnification formulas for height and distances.</p>
+          <div class="section-actions">
+            <button class="btn btn-outline" data-action="overview" data-section="formulas">Overview (mental map)</button>
+            <button class="btn btn-primary" data-action="quiz" data-section="formulas">
+              Start Q&amp;A
+            </button>
+          </div>
+        </article>
+
+        <article class="section-card" data-section="applications">
+          <h3>
+            Applications
+            <span class="section-chip">Section 5</span>
+          </h3>
+          <p>Real life examples: dentist mirror, torches, car headlamps and rear-view mirrors on vehicles.</p>
+          <div class="section-actions">
+            <button class="btn btn-outline" data-action="overview" data-section="applications">Overview (mental map)</button>
+            <button class="btn btn-primary" data-action="quiz" data-section="applications">
+              Start Q&amp;A
+            </button>
+          </div>
+        </article>
+      </div>
+
+      <!-- Section-specific overviews (mental maps) -->
+      <div class="section-overview" id="section-overview-block" style="display:none;">
+        <h3 id="so-title">Section Overview</h3>
+        <div class="section-overview-block">
+          <strong id="so-heading"></strong>
+          <div id="so-content" class="section-overview-arrows"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIZ AREA -->
+    <section class="section" id="quiz-area">
+      <h2>
+        Section Q&amp;A
+        <span class="tagline">Attempt the questions for the section you selected</span>
+      </h2>
+
+      <div id="quiz-container">
+        <div class="quiz-header">
+          <div class="quiz-header-title">
+            <span>Now attempting:</span>
+            <span class="section-name" id="quiz-section-name">Plane Mirrors</span>
+            <small id="quiz-question-count">(0 questions)</small>
+          </div>
+          <button class="toggle-map-btn" id="toggle-map-btn">
+            <span class="icon">🧭</span>
+            <span id="toggle-map-label">Show mental map while answering</span>
+          </button>
+        </div>
+
+        <div class="quiz-layout">
+          <!-- main quiz card -->
+          <div class="quiz-card">
+            <div class="progress-bar-wrapper">
+              <div class="progress-bar-fill" id="progress-bar"></div>
+            </div>
+            <div class="quiz-status-line">
+              <span id="question-counter">Question 1 of 1</span>
+              <span id="attempt-status">Answer to unlock next question</span>
+            </div>
+            <div class="quiz-question-text" id="question-text">
+              Question text will appear here.
+            </div>
+            <ul class="options-list" id="options-list">
+              <!-- options injected by JS -->
+            </ul>
+            <div class="quiz-nav">
+              <div class="quiz-nav-left">
+                <button class="btn btn-outline btn-small" id="prev-btn">← Previous</button>
+                <button class="btn btn-outline btn-small" id="next-btn">Next →</button>
+                <button class="btn-ghost" id="reset-section-btn" title="Clear your answers for this section">
+                  <span>Reset section</span>
+                </button>
+              </div>
+              <div class="quiz-nav-right">
+                <button class="btn btn-primary btn-small" id="submit-section-btn">
+                  Submit section &amp; see answers
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- mental map panel -->
+          <aside id="section-map-panel">
+            <!-- Filled by JS -->
+          </aside>
+        </div>
+
+        <!-- Results card -->
+        <div class="quiz-card" id="results-card">
+          <div class="results-header">
+            <div>
+              <div class="results-score" id="results-score-line">
+                You scored 0 / 0
+              </div>
+              <div class="results-summary" id="results-summary">
+                Complete the section to see your score and detailed answers.
+              </div>
+            </div>
+            <button class="btn btn-outline btn-small" id="retry-btn">
+              Try this section again
+            </button>
+          </div>
+          <div class="results-list" id="results-list">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
 
     <footer>
-      Light Reflection &amp; Mirrors • Mind-Map + Practice  
-      Host this file directly on <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a>.
+      Reflection of Light Quiz &bull; Grade 9, VarshaNagar MPS &bull; Created by
+      <strong>Rajgopal V</strong> <span class="heart">★</span>
     </footer>
   </div>
 
   <script>
-    /****************************************************
-     * 1. DATA: Section configuration + mental maps
-     ****************************************************/
-
-    const SECTIONS = [
-      {
-        id: "plane",
-        title: "Plane Mirrors",
-        icon: "🪞",
-        intro:
-          "Plane mirrors follow simple rules: image is virtual, same size, same distance behind the mirror, and laterally inverted. Multiple reflections create many images.",
-        mentalMap: `
-          <div class="map-root">
-            <div class="bubble"></div>
-            <div>Plane Mirrors – Basic Reflection</div>
-          </div>
-          <div class="map-branches">
-            <div class="map-branch">
-              <div class="branch-title">Image Characteristics</div>
-              <div class="branch-items">
-                <span class="branch-pill">Virtual &amp; erect</span>
-                <span class="branch-pill">Same size as object</span>
-                <span class="branch-pill">Same distance behind mirror</span>
-                <span class="branch-pill">Lateral inversion</span>
-              </div>
-            </div>
-            <div class="map-branch">
-              <div class="branch-title">Multiple Reflections</div>
-              <div class="branch-items">
-                <span class="branch-pill">Two mirrors at angle A</span>
-                <span class="branch-pill">Number of images: n = (360° / A) – 1</span>
-              </div>
-            </div>
-            <div class="map-branch">
-              <div class="branch-title">Full-Length Image</div>
-              <div class="branch-items">
-                <span class="branch-pill">Mirror height = half of person’s height</span>
-              </div>
-            </div>
-          </div>
-        `
-      },
-      {
-        id: "spherical",
-        title: "Spherical Mirrors",
-        icon: "🔮",
-        intro:
-          "Spherical mirrors are curved: concave (converging) and convex (diverging). Key ideas: pole, centre of curvature, principal focus, radius of curvature, and ray rules.",
-        mentalMap: `
-          <div class="map-root">
-            <div class="bubble"></div>
-            <div>Spherical Mirrors – Types &amp; Key Terms</div>
-          </div>
-          <div class="map-branches">
-            <div class="map-branch">
-              <div class="branch-title">Types &amp; Function</div>
-              <div class="branch-items">
-                <span class="branch-pill">Concave – converging, inner surface</span>
-                <span class="branch-pill">Convex – diverging, outer surface</span>
-              </div>
-            </div>
-            <div class="map-branch">
-              <div class="branch-title">Key Terminology</div>
-              <div class="branch-items">
-                <span class="branch-pill">Pole (P)</span>
-                <span class="branch-pill">Centre of curvature (C)</span>
-                <span class="branch-pill">Radius of curvature (R)</span>
-                <span class="branch-pill">Principal axis</span>
-                <span class="branch-pill">Principal focus (F)</span>
-                <span class="branch-pill">Focal length (f = R / 2)</span>
-              </div>
-            </div>
-            <div class="map-branch">
-              <div class="branch-title">Ray Diagram Rules</div>
-              <div class="branch-items">
-                <span class="branch-pill">Parallel → through F (concave)</span>
-                <span class="branch-pill">Through F → parallel</span>
-                <span class="branch-pill">Through C → returns along same path</span>
-              </div>
-            </div>
-          </div>
-        `
-      },
-      {
-        id: "image_formation",
-        title: "Image Formation",
-        icon: "🖼️",
-        intro:
-          "Position of object changes the position, size and nature of the image for concave and convex mirrors.",
-        mentalMap: `
-          <div class="map-root">
-            <div class="bubble"></div>
-            <div>Image Formation – Concave &amp; Convex</div>
-          </div>
-          <div class="map-branches">
-            <div class="map-branch">
-              <div class="branch-title">Concave Mirror Images</div>
-              <div class="branch-items">
-                <span class="branch-pill">Object at ∞ → tiny real image at F</span>
-                <span class="branch-pill">Beyond C → real, inverted, diminished (between C &amp; F)</span>
-                <span class="branch-pill">At C → real, inverted, same size (at C)</span>
-                <span class="branch-pill">Between C &amp; F → real, inverted, magnified (beyond C)</span>
-                <span class="branch-pill">At F → image at ∞</span>
-                <span class="branch-pill">Between P &amp; F → virtual, erect, magnified (behind mirror)</span>
-              </div>
-            </div>
-            <div class="map-branch">
-              <div class="branch-title">Convex Mirror Images</div>
-              <div class="branch-items">
-                <span class="branch-pill">Always virtual &amp; erect</span>
-                <span class="branch-pill">Always diminished</span>
-                <span class="branch-pill">Always behind the mirror</span>
-              </div>
-            </div>
-          </div>
-        `
-      },
-      {
-        id: "formulas",
-        title: "Formulas & Calculations",
-        icon: "📐",
-        intro:
-          "Use Cartesian sign convention, mirror formula and magnification relations to solve numerical problems.",
-        mentalMap: `
-          <div class="map-root">
-            <div class="bubble"></div>
-            <div>Formulas &amp; Calculations</div>
-          </div>
-          <div class="map-branches">
-            <div class="map-branch">
-              <div class="branch-title">Sign Convention</div>
-              <div class="branch-items">
-                <span class="branch-pill">Object always on left of mirror</span>
-                <span class="branch-pill">Distances from pole (P)</span>
-                <span class="branch-pill">Right of P → positive, left → negative</span>
-                <span class="branch-pill">Upward heights → positive, downward → negative</span>
-                <span class="branch-pill">Concave f is negative, convex f positive</span>
-              </div>
-            </div>
-            <div class="map-branch">
-              <div class="branch-title">Mirror &amp; Magnification</div>
-              <div class="branch-items">
-                <span class="branch-pill">Mirror formula: 1/f = 1/v + 1/u</span>
-                <span class="branch-pill">M = h₂ / h₁</span>
-                <span class="branch-pill">M = v / u</span>
-                <span class="branch-pill">M &gt; 0 → virtual &amp; erect</span>
-                <span class="branch-pill">M &lt; 0 → real &amp; inverted</span>
-              </div>
-            </div>
-          </div>
-        `
-      },
-      {
-        id: "applications",
-        title: "Applications",
-        icon: "💡",
-        intro:
-          "Different mirrors are chosen for their image properties: magnification, field of view or parallel beams.",
-        mentalMap: `
-          <div class="map-root">
-            <div class="bubble"></div>
-            <div>Applications of Mirrors</div>
-          </div>
-          <div class="map-branches">
-            <div class="map-branch">
-              <div class="branch-title">Concave Mirror Uses</div>
-              <div class="branch-items">
-                <span class="branch-pill">Dentists &amp; shaving mirrors (magnified image)</span>
-                <span class="branch-pill">Torches &amp; vehicle headlamps (parallel beam)</span>
-              </div>
-            </div>
-            <div class="map-branch">
-              <div class="branch-title">Convex Mirror Uses</div>
-              <div class="branch-items">
-                <span class="branch-pill">Rear-view mirrors in vehicles</span>
-                <span class="branch-pill">Security &amp; shop mirrors (wide field of view)</span>
-              </div>
-            </div>
-          </div>
-        `
-      }
-    ];
-
-    /****************************************************
-     * 2. DATA: Question bank
-     *
-     * NOTE: Only a few sample questions from each
-     * section are filled in here so the code fits
-     * comfortably. Add the rest of your 50 questions
-     * by copying their text + answers from Excel.
-     ****************************************************/
+    /* -----------------------------
+       QUESTION BANK (50 questions)
+       Student-friendly wording
+       ----------------------------- */
 
     const QUESTION_BANK = [
-  /* -------------------- PLANE MIRRORS -------------------- */
-  {
-    id: 1,
-    section: "plane",
-    question:
-      "In a plane mirror, how far does the image appear behind the mirror compared to how far the object is in front of it?",
-    answer:
-      "The perpendicular distance of the image from the mirror is equal to the perpendicular distance of the source from the mirror."
-  },
-  {
-    id: 2,
-    section: "plane",
-    question:
-      "How big is the image in a plane mirror compared to the object?",
-    answer:
-      "The image formed by a plane mirror is of the same size as the source."
-  },
-  {
-    id: 3,
-    section: "plane",
-    question:
-      "When letters appear flipped left-to-right in a mirror, what is this effect called?",
-    answer: "This phenomenon is called lateral inversion."
-  },
-  {
-    id: 4,
-    section: "plane",
-    question:
-      "If two plane mirrors are placed at an angle A, what formula helps you find how many images are formed?",
-    answer: "n = (360°/A) - 1"
-  },
-  {
-    id: 5,
-    section: "plane",
-    question:
-      "To see your full body in a mirror, what fraction of your height must the mirror be?",
-    answer: "half"
-  },
-  {
-    id: 49,
-    section: "plane",
-    question:
-      "What kind of image can be projected onto a screen in front of a class?",
-    answer: "A real image."
-  },
-  {
-    id: 50,
-    section: "plane",
-    question:
-      "What kind of image forms behind a mirror and cannot be shown on a screen?",
-    answer: "A virtual image."
-  },
+      // Section: Plane Mirrors
+      {
+        id: 1,
+        section: "plane",
+        question:
+          "In a plane (flat) mirror, how far is the image from the mirror compared to how far the object is from the mirror?",
+        answer:
+          "The perpendicular distance of the image from the mirror is equal to the perpendicular distance of the source from the mirror.",
+      },
+      {
+        id: 2,
+        section: "plane",
+        question:
+          "In a plane mirror, how big is the image compared to the object?",
+        answer:
+          "The image formed by a plane mirror is of the same size as the source.",
+      },
+      {
+        id: 3,
+        section: "plane",
+        question:
+          "When writing in front of a mirror looks reversed (left and right are swapped), what is this effect called?",
+        answer: "This phenomenon is called lateral inversion.",
+      },
+      {
+        id: 4,
+        section: "plane",
+        question:
+          "Two plane mirrors are kept at an angle A to each other. Which formula do we use to find the number of images n formed?",
+        answer: "n = (360°/A) - 1",
+      },
+      {
+        id: 5,
+        section: "plane",
+        question:
+          "To see your full body in a plane mirror, the minimum height of the mirror should be what fraction of your own height?",
+        answer: "half",
+      },
+      {
+        id: 49,
+        section: "plane",
+        question:
+          "Which type of image can be obtained on a screen (for example, on a wall or a sheet of paper)?",
+        answer: "A real image.",
+      },
+      {
+        id: 50,
+        section: "plane",
+        question:
+          "Which type of image is formed behind the mirror and cannot be obtained on a screen?",
+        answer: "A virtual image.",
+      },
 
-  /* -------------------- SPHERICAL MIRRORS -------------------- */
-  {
-    id: 6,
-    section: "spherical",
-    question:
-      "What do we call a spherical mirror that reflects light from its inner curved surface?",
-    answer: "It is called a concave mirror."
-  },
-  {
-    id: 7,
-    section: "spherical",
-    question:
-      "What do we call a spherical mirror that reflects light from its outer curved surface?",
-    answer: "It is called a convex mirror."
-  },
-  {
-    id: 8,
-    section: "spherical",
-    question:
-      "In a spherical mirror, what name is given to the centre of the mirror surface?",
-    answer: "The pole (P)."
-  },
-  {
-    id: 9,
-    section: "spherical",
-    question:
-      "What do we call the centre of the imaginary sphere from which the mirror is cut?",
-    answer: "The centre of curvature (C)."
-  },
-  {
-    id: 10,
-    section: "spherical",
-    question:
-      "What is the name of the radius of the imaginary sphere to which the mirror belongs?",
-    answer: "The radius of curvature (R)."
-  },
-  {
-    id: 11,
-    section: "spherical",
-    question:
-      "What is the straight line that passes through the pole and the centre of curvature called?",
-    answer: "It is called the principal axis."
-  },
-  {
-    id: 12,
-    section: "spherical",
-    question:
-      "Where do rays that are parallel to the principal axis meet after reflection from a concave mirror?",
-    answer: "The principal focus (F)."
-  },
-  {
-    id: 13,
-    section: "spherical",
-    question:
-      "In a convex mirror, parallel rays appear to come from which point after reflection?",
-    answer:
-      "They appear to come from a particular point behind the mirror."
-  },
-  {
-    id: 14,
-    section: "spherical",
-    question:
-      "What do we call the distance between the pole and the focus of a spherical mirror?",
-    answer: "It is called the focal length (f)."
-  },
-  {
-    id: 15,
-    section: "spherical",
-    question:
-      "How is the focal length related to the radius of curvature in spherical mirrors?",
-    answer: "The focal length is half of the radius of curvature, i.e., f = R/2."
-  },
-  {
-    id: 16,
-    section: "spherical",
-    question:
-      "If a ray strikes a concave mirror parallel to the principal axis, through which point does it pass after reflection?",
-    answer: "principal focus"
-  },
-  {
-    id: 17,
-    section: "spherical",
-    question:
-      "If a ray passes through the focus of a concave mirror before striking it, what happens after reflection?",
-    answer: "parallel to the principal axis"
-  },
-  {
-    id: 18,
-    section: "spherical",
-    question:
-      "What happens when a ray hits the concave mirror through the centre of curvature?",
-    answer: "The reflected ray traces the same path back."
-  },
-  {
-    id: 32,
-    section: "spherical",
-    question:
-      "Why is a concave mirror also called a converging or focusing mirror?",
-    answer: "focusing (or converging)"
-  },
-  {
-    id: 33,
-    section: "spherical",
-    question:
-      "Why is a convex mirror also called a diverging or spreading mirror?",
-    answer: "dispersing (or diverging)"
-  },
+      // Section: Spherical Mirrors
+      {
+        id: 6,
+        section: "spherical",
+        question:
+          "What do we call a spherical mirror that reflects light from its inner, curved-in surface?",
+        answer: "It is called a concave mirror.",
+      },
+      {
+        id: 7,
+        section: "spherical",
+        question:
+          "What do we call a spherical mirror that reflects light from its outer, curved-out surface?",
+        answer: "It is called a convex mirror.",
+      },
+      {
+        id: 8,
+        section: "spherical",
+        question:
+          "In a spherical mirror, what do we call the middle point of the mirror surface?",
+        answer: "The pole (P).",
+      },
+      {
+        id: 9,
+        section: "spherical",
+        question:
+          "For a spherical mirror, what do we call the centre of the imaginary sphere of which the mirror is a part?",
+        answer: "The centre of curvature (C).",
+      },
+      {
+        id: 10,
+        section: "spherical",
+        question:
+          "For a spherical mirror, what do we call the radius of the imaginary sphere of which the mirror is a part?",
+        answer: "The radius of curvature (R).",
+      },
+      {
+        id: 11,
+        section: "spherical",
+        question:
+          "What do we call the straight line that passes through the pole and the centre of curvature of a spherical mirror?",
+        answer: "It is called the principal axis.",
+      },
+      {
+        id: 12,
+        section: "spherical",
+        question:
+          "For a concave mirror, where do rays that come in parallel to the principal axis meet after reflection?",
+        answer: "The principal focus (F).",
+      },
+      {
+        id: 13,
+        section: "spherical",
+        question:
+          "For a convex mirror, parallel rays appear to come from which point after reflection?",
+        answer:
+          "They appear to come from a particular point behind the mirror, called the principal focus.",
+      },
+      {
+        id: 14,
+        section: "spherical",
+        question:
+          "What do we call the distance between the pole and the principal focus of a spherical mirror?",
+        answer: "It is called the focal length (f).",
+      },
+      {
+        id: 15,
+        section: "spherical",
+        question:
+          "How is the focal length f related to the radius of curvature R for a spherical mirror?",
+        answer: "The focal length is half of the radius of curvature: f = R/2.",
+      },
+      {
+        id: 16,
+        section: "spherical",
+        question:
+          "Ray rule 1 for a concave mirror: A ray comes in parallel to the principal axis and hits the mirror. Through which point does it pass after reflection?",
+        answer: "principal focus",
+      },
+      {
+        id: 17,
+        section: "spherical",
+        question:
+          "Ray rule 2 for a concave mirror: A ray passes through the principal focus and hits the mirror. How does it travel after reflection?",
+        answer: "parallel to the principal axis",
+      },
+      {
+        id: 18,
+        section: "spherical",
+        question:
+          "Ray rule 3 for a spherical mirror: What happens to a ray that passes through the centre of curvature and then hits the mirror?",
+        answer: "The reflected ray traces the same path back.",
+      },
+      {
+        id: 32,
+        section: "spherical",
+        question:
+          "A concave mirror brings parallel rays together at a point. What special name is given to it because of this?",
+        answer: "focusing (or converging)",
+      },
+      {
+        id: 33,
+        section: "spherical",
+        question:
+          "A convex mirror spreads parallel rays out. What special name is given to it because of this?",
+        answer: "dispersing (or diverging)",
+      },
 
-  /* -------------------- IMAGE FORMATION -------------------- */
-  {
-    id: 19,
-    section: "image_formation",
-    question:
-      "If an object is very far away (almost at infinity), where does a concave mirror form its image?",
-    answer:
-      "A point image, which is real and inverted, is formed at the focus."
-  },
-  {
-    id: 20,
-    section: "image_formation",
-    question:
-      "If an object is placed beyond the centre of curvature of a concave mirror, roughly where will the image form?",
-    answer:
-      "The image is formed between the centre of curvature and the focus."
-  },
-  {
-    id: 21,
-    section: "image_formation",
-    question:
-      "If a concave mirror has an object placed beyond the centre of curvature, what kind of image will it produce?",
-    answer:
-      "The image is real, inverted, and diminished (smaller than the object)."
-  },
-  {
-    id: 22,
-    section: "image_formation",
-    question:
-      "If an object is placed at the centre of curvature of a concave mirror, where is the image formed?",
-    answer: "The image is formed at the centre of curvature."
-  },
-  {
-    id: 23,
-    section: "image_formation",
-    question:
-      "What kind of image does a concave mirror form when the object is exactly at the centre of curvature?",
-    answer:
-      "The image is real, inverted, and the same size as the object."
-  },
-  {
-    id: 24,
-    section: "image_formation",
-    question:
-      "If the object is placed between the focus and the centre of curvature of a concave mirror, where does the image form?",
-    answer: "The image is formed beyond the centre of curvature."
-  },
-  {
-    id: 25,
-    section: "image_formation",
-    question:
-      "What kind of image does a concave mirror form when the object is between the centre of curvature and the focus?",
-    answer:
-      "The image is real, inverted, and magnified (larger than the object)."
-  },
-  {
-    id: 26,
-    section: "image_formation",
-    question:
-      "If an object is kept at the focus of a concave mirror, where does its image form?",
-    answer:
-      "The image is formed at infinity; it is real, inverted, and highly enlarged (highly magnified)."
-  },
-  {
-    id: 27,
-    section: "image_formation",
-    question:
-      "What kind of image is produced when an object is kept at the focus of a concave mirror?",
-    answer:
-      "The image is real, inverted, and highly enlarged (formed at infinity)."
-  },
-  {
-    id: 28,
-    section: "image_formation",
-    question:
-      "If an object is placed between the pole and the focus of a concave mirror, where will the image appear?",
-    answer: "The image is formed behind the mirror."
-  },
-  {
-    id: 29,
-    section: "image_formation",
-    question:
-      "What kind of image is formed when an object is placed between the pole and the focus of a concave mirror?",
-    answer: "The image is virtual, erect, and magnified."
-  },
-  {
-    id: 30,
-    section: "image_formation",
-    question:
-      "No matter where you place an object in front of a convex mirror, what will the image always be like?",
-    answer:
-      "The image is always virtual, erect, and smaller than the object."
-  },
-  {
-    id: 31,
-    section: "image_formation",
-    question:
-      "Where does a convex mirror always form its image?",
-    answer: "The image is always situated behind the mirror."
-  },
+      // Section: Image Formation
+      {
+        id: 19,
+        section: "image_formation",
+        question:
+          "When an object is very far away from a concave mirror (almost at infinity), what kind of image is formed and where is it formed?",
+        answer:
+          "A point image, which is real and inverted, is formed at the focus.",
+      },
+      {
+        id: 20,
+        section: "image_formation",
+        question:
+          "When an object is placed beyond the centre of curvature of a concave mirror, where is its image formed?",
+        answer:
+          "The image is formed between the centre of curvature and the focus.",
+      },
+      {
+        id: 21,
+        section: "image_formation",
+        question:
+          "For a concave mirror, when the object is beyond the centre of curvature, what is the nature and size of the image?",
+        answer:
+          "The image is real, inverted, and diminished (smaller than the object).",
+      },
+      {
+        id: 22,
+        section: "image_formation",
+        question:
+          "When an object is placed at the centre of curvature of a concave mirror, where is the image formed?",
+        answer: "The image is formed at the centre of curvature.",
+      },
+      {
+        id: 23,
+        section: "image_formation",
+        question:
+          "For a concave mirror with the object at the centre of curvature, what is the nature and size of the image?",
+        answer:
+          "The image is real, inverted, and the same size as the object.",
+      },
+      {
+        id: 24,
+        section: "image_formation",
+        question:
+          "For a concave mirror, when the object is kept between the centre of curvature and the focus, where is the image formed?",
+        answer: "The image is formed beyond the centre of curvature.",
+      },
+      {
+        id: 25,
+        section: "image_formation",
+        question:
+          "For a concave mirror, when the object is between the centre of curvature and the focus, what is the nature and size of the image?",
+        answer:
+          "The image is real, inverted, and magnified (larger than the object).",
+      },
+      {
+        id: 26,
+        section: "image_formation",
+        question:
+          "For a concave mirror, when an object is placed exactly at the focus, where is the image formed?",
+        answer: "The image is formed at infinity.",
+      },
+      {
+        id: 27,
+        section: "image_formation",
+        question:
+          "For a concave mirror with the object at the focus, what is the nature and size of the image?",
+        answer: "The image is real, inverted, and very large.",
+      },
+      {
+        id: 28,
+        section: "image_formation",
+        question:
+          "For a concave mirror, when the object is placed between the pole and the focus, where is the image formed?",
+        answer: "The image is formed behind the mirror.",
+      },
+      {
+        id: 29,
+        section: "image_formation",
+        question:
+          "For a concave mirror, when the object is between the pole and the focus, what is the nature and size of the image?",
+        answer: "The image is virtual, erect, and magnified.",
+      },
+      {
+        id: 30,
+        section: "image_formation",
+        question:
+          "For a convex mirror, what is the nature of the image that is formed, no matter where the object is placed?",
+        answer:
+          "The image is always virtual, erect, and smaller than the object.",
+      },
+      {
+        id: 31,
+        section: "image_formation",
+        question:
+          "For a convex mirror, where is the image always located?",
+        answer: "The image is always situated behind the mirror.",
+      },
 
-  /* -------------------- FORMULAS & CALCULATIONS -------------------- */
-  {
-    id: 37,
-    section: "formulas",
-    question:
-      "According to the sign convention, on which side of the mirror is the object always kept?",
-    answer: "The object is always placed on the left side of the mirror."
-  },
-  {
-    id: 38,
-    section: "formulas",
-    question:
-      "According to the sign convention, from which point are all distances measured?",
-    answer: "pole of the mirror."
-  },
-  {
-    id: 39,
-    section: "formulas",
-    question:
-      "In sign convention, what sign do we give to distances measured to the right of the pole? And to the left?",
-    answer: "positive; negative."
-  },
-  {
-    id: 40,
-    section: "formulas",
-    question:
-      "In sign convention, what sign is given to heights measured upward? And downward?",
-    answer: "positive; negative."
-  },
-  {
-    id: 41,
-    section: "formulas",
-    question:
-      "What is the sign of the focal length of a concave mirror?",
-    answer: "The focal length of a concave mirror is negative."
-  },
-  {
-    id: 42,
-    section: "formulas",
-    question:
-      "What is the sign of the focal length of a convex mirror?",
-    answer: "The focal length of a convex mirror is positive."
-  },
-  {
-    id: 43,
-    section: "formulas",
-    question:
-      "What is the mirror formula that relates object distance (u), image distance (v), and focal length (f)?",
-    answer: "1/f = 1/v + 1/u"
-  },
-  {
-    id: 44,
-    section: "formulas",
-    question:
-      "What does magnification (M) tell you about an image?",
-    answer:
-      "It tells us how large the image is as compared to the object."
-  },
-  {
-    id: 45,
-    section: "formulas",
-    question:
-      "What is the formula for magnification in terms of image height (h₂) and object height (h₁)?",
-    answer: "M = h₂ / h₁"
-  },
-  {
-    id: 46,
-    section: "formulas",
-    question:
-      "What is the formula for magnification in terms of image distance (v) and object distance (u)?",
-    answer: "M = v / u"
-  },
-  {
-    id: 47,
-    section: "formulas",
-    question:
-      "If the image height is negative, what does it tell you about the type of image?",
-    answer: "It signifies that the image is real and inverted."
-  },
-  {
-    id: 48,
-    section: "formulas",
-    question:
-      "If the image height is positive, what kind of image is it?",
-    answer: "It signifies that the image is virtual and erect."
-  },
+      // Section: Formulas & Calculations
+      {
+        id: 37,
+        section: "formulas",
+        question:
+          "According to the Cartesian sign convention for mirrors, on which side of the mirror is the object always kept?",
+        answer: "The object is always kept on the left of the mirror.",
+      },
+      {
+        id: 38,
+        section: "formulas",
+        question:
+          "In the Cartesian sign convention for mirrors, from which point are all distances along the principal axis measured?",
+        answer: "pole of the mirror",
+      },
+      {
+        id: 39,
+        section: "formulas",
+        question:
+          "In this sign convention, distances measured to the right of the pole are taken as what sign, and distances to the left are taken as what sign?",
+        answer: "positive, negative",
+      },
+      {
+        id: 40,
+        section: "formulas",
+        question:
+          "In this sign convention, distances measured vertically upwards from the principal axis are given which sign, and those measured downwards are given which sign?",
+        answer: "positive, negative",
+      },
+      {
+        id: 41,
+        section: "formulas",
+        question:
+          "According to the sign convention, is the focal length of a concave mirror positive or negative?",
+        answer: "The focal length of a concave mirror is negative.",
+      },
+      {
+        id: 42,
+        section: "formulas",
+        question:
+          "According to the sign convention, is the focal length of a convex mirror positive or negative?",
+        answer: "The focal length of a convex mirror is positive.",
+      },
+      {
+        id: 43,
+        section: "formulas",
+        question:
+          "Which formula connects the object distance u, image distance v and focal length f for a spherical mirror?",
+        answer: "1/f = 1/v + 1/u",
+      },
+      {
+        id: 44,
+        section: "formulas",
+        question:
+          "What does the magnification M produced by a spherical mirror tell us about the image?",
+        answer:
+          "It tells us how large the image is as compared to the object.",
+      },
+      {
+        id: 45,
+        section: "formulas",
+        question:
+          "What is the formula for magnification M in terms of the height of the image h₂ and the height of the object h₁?",
+        answer: "M = h₂ / h₁",
+      },
+      {
+        id: 46,
+        section: "formulas",
+        question:
+          "What is the formula for magnification M in terms of the image distance v and the object distance u?",
+        answer: "M = v / u",
+      },
+      {
+        id: 47,
+        section: "formulas",
+        question:
+          "If the height of an object is positive, what does it mean if the height of the image is negative?",
+        answer: "It signifies that the image is real and inverted.",
+      },
+      {
+        id: 48,
+        section: "formulas",
+        question:
+          "If the height of an object is positive, what does it mean if the height of the image is also positive?",
+        answer: "It signifies that the image is virtual and erect.",
+      },
 
-  /* -------------------- APPLICATIONS -------------------- */
-  {
-    id: 34,
-    section: "applications",
-    question:
-      "Which mirror gives a magnified image and is used by dentists and barbers?",
-    answer: "A concave mirror."
-  },
-  {
-    id: 35,
-    section: "applications",
-    question:
-      "Which mirror is used in torches and car headlights to produce a strong, parallel beam of light?",
-    answer: "A concave mirror is used to obtain a parallel beam of light."
-  },
-  {
-    id: 36,
-    section: "applications",
-    question:
-      "Which type of mirror is used as a rear-view mirror in vehicles to give a wider field of view?",
-    answer: "A convex mirror."
-  }
-];
-
-    /* Generic distractor pool for MCQs.
-       You can customise or create specific distractors per question if you like. */
-    const GENERIC_DISTRACTORS = [
-      "The image is real and erect.",
-      "The image is virtual and inverted.",
-      "The size of the image is always smaller than the object.",
-      "The size of the image is always larger than the object.",
-      "The image is formed at the centre of curvature.",
-      "The image is formed at the pole of the mirror.",
-      "The image cannot be seen by the eye.",
-      "The mirror formula does not apply.",
-      "The magnification is always 1.",
-      "The rays do not obey the laws of reflection."
+      // Section: Applications
+      {
+        id: 34,
+        section: "applications",
+        question:
+          "Which type of mirror do dentists and barbers use when they want a magnified view of teeth or face?",
+        answer: "A concave mirror.",
+      },
+      {
+        id: 35,
+        section: "applications",
+        question:
+          "Which type of mirror is used in torches and headlamps of vehicles to get a strong parallel beam of light?",
+        answer: "A concave mirror is used to obtain a parallel beam of light.",
+      },
+      {
+        id: 36,
+        section: "applications",
+        question:
+          "Which type of mirror is used as a side-view or rear-view mirror in cars and motorcycles?",
+        answer: "A convex mirror.",
+      },
     ];
 
-    /****************************************************
-     * 3. Utility: Build MCQ options from answer text
-     ****************************************************/
+    /* -----------------------------
+       Section mental map content
+       ----------------------------- */
 
-    function buildOptions(correctText) {
-      // Choose 3 random distractors that are not identical to the correct answer
-      const pool = GENERIC_DISTRACTORS.filter(d => d !== correctText);
-      const shuffled = [...pool].sort(() => Math.random() - 0.5);
-      const distractors = shuffled.slice(0, 3);
-      const options = [correctText, ...distractors].sort(() => Math.random() - 0.5);
-      const correctIndex = options.indexOf(correctText);
-      return { options, correctIndex };
-    }
-
-    /****************************************************
-     * 4. State & rendering helpers
-     ****************************************************/
-
-    const state = {
-      currentSectionId: SECTIONS[0].id,
-      currentView: "overview", // 'overview' or 'quiz'
-      quizProgress: {}, // per-section { index, score, answered: [...], completed: bool }
-      mapExpanded: false
+    const SECTION_MAPS = {
+      plane: {
+        title: "Plane Mirrors – Mental Map",
+        content: `
+        Plane mirror → flat reflective surface<br/>
+        ↓<br/>
+        Image in plane mirror → virtual, same size, same distance behind mirror as object in front<br/>
+        ↓<br/>
+        Left-right reversal → <strong>lateral inversion</strong><br/>
+        ↓<br/>
+        Minimum mirror height → half of person height to see full image<br/>
+        ↓<br/>
+        More than one mirror → formula for number of images: n = (360° / A) - 1
+      `,
+      },
+      spherical: {
+        title: "Spherical Mirrors – Mental Map",
+        content: `
+        Spherical mirrors → parts of a sphere<br/>
+        ↓<br/>
+        Concave mirror → inner surface reflects (converging / focusing mirror)<br/>
+        Convex mirror → outer surface reflects (diverging / dispersing mirror)<br/>
+        ↓<br/>
+        Key points → pole (P), centre of curvature (C), radius of curvature (R)<br/>
+        ↓<br/>
+        Principal axis → line through P and C<br/>
+        ↓<br/>
+        Principal focus (F) → point where rays parallel to axis meet or appear to come from<br/>
+        ↓<br/>
+        Focal length (f) → distance PF, with relation f = R / 2
+      `,
+      },
+      image_formation: {
+        title: "Image Formation – Mental Map",
+        content: `
+        Concave mirror → image depends on object position<br/>
+        ↓<br/>
+        Object very far (almost at infinity) → tiny real inverted image at focus<br/>
+        ↓<br/>
+        Object beyond C → real, inverted, smaller image between C and F<br/>
+        Object at C → real, inverted, same size image at C<br/>
+        Object between C and F → real, inverted, larger image beyond C<br/>
+        Object at F → real, inverted image at infinity, very large<br/>
+        Object between P and F → virtual, erect, magnified image behind mirror<br/>
+        ↓<br/>
+        Convex mirror → always virtual, erect, smaller image behind mirror
+      `,
+      },
+      formulas: {
+        title: "Formulas & Calculations – Mental Map",
+        content: `
+        Cartesian sign convention → object on left of mirror<br/>
+        ↓<br/>
+        Distances measured from pole (P) along principal axis<br/>
+        Right of P → positive, left of P → negative<br/>
+        Upwards from axis → positive, downwards → negative<br/>
+        ↓<br/>
+        Focal length signs → concave mirror: negative f, convex mirror: positive f<br/>
+        ↓<br/>
+        Mirror formula → 1/f = 1/v + 1/u<br/>
+        ↓<br/>
+        Magnification → M tells how big image is compared to object<br/>
+        M = h₂ / h₁ = v / u<br/>
+        Sign of height → negative height means real inverted image, positive height means virtual erect image
+      `,
+      },
+      applications: {
+        title: "Applications – Mental Map",
+        content: `
+        Concave mirror → converging mirror<br/>
+        ↓<br/>
+        Dentists and barbers → concave mirror for magnified close-up view<br/>
+        Torches and vehicle headlamps → concave mirror to give parallel beam of light<br/>
+        ↓<br/>
+        Convex mirror → diverging mirror<br/>
+        ↓<br/>
+        Rear-view and side-view mirrors → convex mirror to see a wider area, image always smaller but erect
+      `,
+      },
     };
 
-    function getSection(id) {
-      return SECTIONS.find(s => s.id === id);
-    }
+    /* -----------------------------
+       Quiz logic
+       ----------------------------- */
 
-    function getQuestionsForSection(sectionId) {
-      return QUESTION_BANK.filter(q => q.section === sectionId);
-    }
+    const SECTION_LABELS = {
+      plane: "Plane Mirrors",
+      spherical: "Spherical Mirrors",
+      image_formation: "Image Formation",
+      formulas: "Formulas & Calculations",
+      applications: "Applications",
+    };
 
-    function initQuizState(sectionId) {
-      const questions = getQuestionsForSection(sectionId);
-      if (!state.quizProgress[sectionId]) {
-        state.quizProgress[sectionId] = {
-          index: 0,
-          score: 0,
-          answers: [], // { chosenIndex, correctIndex }
-          completed: false
-        };
+    let currentSection = null;
+    let currentQuestions = [];
+    let currentIndex = 0;
+    let userAnswers = []; // store index of chosen option or null
+    let resultsShown = false;
+
+    function shuffleArray(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
       }
-      // Ensure length matches number of questions (in case you add more later)
-      const prog = state.quizProgress[sectionId];
-      if (prog.answers.length < questions.length) {
-        for (let i = prog.answers.length; i < questions.length; i++) {
-          prog.answers.push(null);
-        }
-      }
+      return a;
     }
 
-    /****************************************************
-     * 5. Render section navigation and view toggles
-     ****************************************************/
-
-    function renderSectionNav() {
-      const nav = document.getElementById("section-nav");
-      nav.innerHTML = "";
-      SECTIONS.forEach(section => {
-        const btn = document.createElement("button");
-        btn.className =
-          "section-tab" +
-          (section.id === state.currentSectionId ? " active" : "");
-        btn.innerHTML = `<span class="icon">${section.icon}</span>${section.title}`;
-        btn.addEventListener("click", () => {
-          state.currentSectionId = section.id;
-          state.mapExpanded = false;
-          renderSectionNav();
-          renderContent();
-        });
-        nav.appendChild(btn);
-      });
-    }
-
-    function setupViewToggle() {
-      const buttons = document.querySelectorAll(".view-btn");
-      buttons.forEach(btn => {
-        btn.addEventListener("click", () => {
-          const view = btn.getAttribute("data-view");
-          if (state.currentView !== view) {
-            state.currentView = view;
-            state.mapExpanded = false;
-            buttons.forEach(b => b.classList.toggle("active", b === btn));
-            renderContent();
-          }
-        });
-      });
-    }
-
-    /****************************************************
-     * 6. Render Overview (Mental Map)
-     ****************************************************/
-
-    function renderOverview(section) {
-      const content = document.getElementById("content");
-      content.innerHTML = `
-        <div class="section-intro">
-          <strong>${section.title}</strong><br/>
-          ${section.intro}
-        </div>
-        <div class="mental-map">
-          ${section.mentalMap}
-        </div>
-      `;
-    }
-
-    /****************************************************
-     * 7. Render Quiz for current section
-     ****************************************************/
-
-    function renderQuiz(section) {
-      const questions = getQuestionsForSection(section.id);
-      initQuizState(section.id);
-      const progress = state.quizProgress[section.id];
-      const total = questions.length;
-
-      // Guard: if no questions yet for this section
-      if (!total) {
-        document.getElementById("content").innerHTML = `
-          <div class="quiz-layout">
-            <div class="map-toggle-bar">
-              <span class="label">
-                <strong>Mental Map:</strong> ${section.title}
-              </span>
-              <span class="chevron">▶</span>
-            </div>
-            <div class="quiz-main-grid">
-              <div class="quiz-card">
-                <div class="question-text">
-                  No questions have been added yet for <strong>${section.title}</strong>.
-                  Please update the QUESTION_BANK in the script.
-                </div>
-              </div>
-            </div>
-          </div>
-        `;
-        return;
-      }
-
-      const currentIndex = Math.min(progress.index, total - 1);
-      const q = questions[currentIndex];
-
-      // Build MCQ options (each render freshly – slight randomisation each time)
-      const { options, correctIndex } = buildOptions(q.answer);
-
-      // If already answered earlier, keep the recorded choice and correct index
-      const prev = progress.answers[currentIndex];
-      const chosenPreviously =
-        prev && typeof prev.chosenIndex === "number" ? prev.chosenIndex : null;
-      const storedCorrectIndex =
-        prev && typeof prev.correctIndex === "number"
-          ? prev.correctIndex
-          : correctIndex;
-
-      // Save the correct index if not already stored
-      if (!prev || typeof prev.correctIndex !== "number") {
-        progress.answers[currentIndex] = {
-          chosenIndex: chosenPreviously,
-          correctIndex: storedCorrectIndex
-        };
-      }
-
-      const percent = ((currentIndex + 1) / total) * 100;
-      const content = document.getElementById("content");
-
-      const withMapClass = state.mapExpanded ? "with-map" : "";
-      const chevron = state.mapExpanded ? "▶" : "▶";
-
-      content.innerHTML = `
-        <div class="quiz-layout">
-          <div class="map-toggle-bar ${state.mapExpanded ? "expanded" : ""}">
-            <span class="label">
-              <strong>Mental Map:</strong> ${section.title} &nbsp;•&nbsp;
-              <span>Tap to ${state.mapExpanded ? "hide" : "open"} help</span>
-            </span>
-            <span class="chevron">${chevron}</span>
-          </div>
-          <div class="quiz-main-grid ${withMapClass}">
-            ${
-              state.mapExpanded
-                ? `
-              <aside class="quiz-map-panel">
-                <div class="mental-map">
-                  ${section.mentalMap}
-                </div>
-              </aside>
-            `
-                : ""
-            }
-            <section class="quiz-card">
-              <div class="quiz-header-row">
-                <div class="quiz-title">
-                  ${section.title} – Question ${currentIndex + 1} of ${total}
-                  ${
-                    progress.completed
-                      ? `<span style="font-size:0.78rem;color:var(--accent-strong);margin-left:4px;">(Completed)</span>`
-                      : ""
-                  }
-                </div>
-                <div class="quiz-meta">
-                  <span class="chip">Score: ${progress.score} / ${total}</span>
-                </div>
-              </div>
-              <div class="progress-track">
-                <div class="progress-fill" style="width:${percent}%;"></div>
-              </div>
-              <div class="question-text">
-                ${q.question}
-              </div>
-              <ul class="options-list">
-                ${options
-                  .map(
-                    (opt, idx) => `
-                  <li>
-                    <button
-                      class="option-btn"
-                      data-index="${idx}"
-                    >
-                      <span class="option-label">${String.fromCharCode(
-                        65 + idx
-                      )}.</span>
-                      <span class="option-text">${opt}</span>
-                      <span class="option-icon">★</span>
-                    </button>
-                  </li>
-                `
-                  )
-                  .join("")}
-              </ul>
-              <div class="feedback-row">
-                <div class="feedback-text" id="feedback-text"></div>
-                <div class="nav-buttons">
-                  <button class="btn btn-ghost" id="prev-btn">
-                    ◀ Previous
-                  </button>
-                  <button class="btn btn-primary" id="next-btn" disabled>
-                    ${
-                      currentIndex === total - 1
-                        ? progress.completed
-                          ? "Restart Section"
-                          : "Finish Section"
-                        : "Next ▶"
-                    }
-                  </button>
-                </div>
-              </div>
-              ${
-                progress.completed
-                  ? renderResultSummaryHTML(section, questions, progress)
-                  : ""
-              }
-            </section>
-          </div>
-        </div>
-      `;
-
-      // Add interactions
-      const mapBar = document.querySelector(".map-toggle-bar");
-      mapBar.addEventListener("click", () => {
-        state.mapExpanded = !state.mapExpanded;
-        renderQuiz(section);
-      });
-
-      const optionButtons = Array.from(
-        document.querySelectorAll(".option-btn")
+    function buildQuizForSection(sectionKey) {
+      const baseQuestions = QUESTION_BANK.filter(
+        (q) => q.section === sectionKey
       );
-      const feedbackEl = document.getElementById("feedback-text");
-      const prevBtn = document.getElementById("prev-btn");
-      const nextBtn = document.getElementById("next-btn");
+      const allAnswers = QUESTION_BANK.map((q) => q.answer);
 
-      // Restore previous selection if any
-      if (chosenPreviously !== null) {
-        optionButtons.forEach((btn, idx) => {
-          const isChosen = idx === chosenPreviously;
-          const isCorrect = idx === storedCorrectIndex;
-
-          if (isChosen && isCorrect) {
-            btn.classList.add("correct");
-          } else if (isChosen) {
-            btn.classList.add("incorrect");
-          }
-        });
-
-        const correct = chosenPreviously === storedCorrectIndex;
-        feedbackEl.className = "feedback-text " + (correct ? "correct" : "incorrect");
-        feedbackEl.innerHTML = `
-          <span class="status-dot"></span>
-          ${
-            correct
-              ? "Correct! 🎉"
-              : "Incorrect – check the mental map and try to understand why."
-          }
-        `;
-        nextBtn.disabled = false;
-      }
-
-      optionButtons.forEach(btn => {
-        btn.addEventListener("click", () => {
-          const chosenIndex = parseInt(btn.dataset.index, 10);
-          const correctIndexCurrent = storedCorrectIndex;
-
-          // Update progress state
-          const alreadyAnswered =
-            progress.answers[currentIndex] &&
-            typeof progress.answers[currentIndex].chosenIndex === "number";
-
-          progress.answers[currentIndex] = {
-            chosenIndex,
-            correctIndex: correctIndexCurrent
-          };
-
-          // Update score only first time a question is answered
-          if (!alreadyAnswered) {
-            if (chosenIndex === correctIndexCurrent) progress.score += 1;
-          } else {
-            // If they change an answer after completion, adjust score
-            // (optional; here we allow score to update)
-            const wasCorrectBefore =
-              progress.answers[currentIndex].chosenIndex === correctIndexCurrent;
-            const nowCorrect = chosenIndex === correctIndexCurrent;
-            if (!wasCorrectBefore && nowCorrect) progress.score += 1;
-            if (wasCorrectBefore && !nowCorrect) progress.score -= 1;
-          }
-
-          // Update UI classes
-          optionButtons.forEach(b => {
-            b.classList.remove("selected", "correct", "incorrect");
-          });
-          btn.classList.add("selected");
-          if (chosenIndex === correctIndexCurrent) {
-            btn.classList.add("correct");
-            feedbackEl.className = "feedback-text correct";
-            feedbackEl.innerHTML = `
-              <span class="status-dot"></span>
-              Correct! 🎉
-            `;
-          } else {
-            btn.classList.add("incorrect");
-            feedbackEl.className = "feedback-text incorrect";
-            feedbackEl.innerHTML = `
-              <span class="status-dot"></span>
-              Incorrect – the correct idea is shown in the mental map.
-            `;
-          }
-
-          nextBtn.disabled = false;
-        });
-      });
-
-      prevBtn.addEventListener("click", () => {
-        if (currentIndex > 0) {
-          progress.index = currentIndex - 1;
-          renderQuiz(section);
-        }
-      });
-
-      nextBtn.addEventListener("click", () => {
-        if (!progress.completed && currentIndex < total - 1) {
-          progress.index = currentIndex + 1;
-          renderQuiz(section);
-        } else if (!progress.completed && currentIndex === total - 1) {
-          // Mark as completed
-          progress.completed = true;
-          renderQuiz(section);
-        } else if (progress.completed) {
-          // Restart section quiz
-          state.quizProgress[section.id] = {
-            index: 0,
-            score: 0,
-            answers: new Array(total).fill(null),
-            completed: false
-          };
-          renderQuiz(section);
-        }
+      // For each question, generate 4 options (1 correct + 3 random wrong)
+      return baseQuestions.map((q) => {
+        const wrongOptions = shuffleArray(
+          allAnswers.filter((a) => a !== q.answer)
+        ).slice(0, 3);
+        const options = shuffleArray([q.answer, ...wrongOptions]);
+        const correctIndex = options.indexOf(q.answer);
+        return { ...q, options, correctIndex };
       });
     }
 
-    function renderResultSummaryHTML(section, questions, progress) {
-      const total = questions.length;
-      const percent = ((progress.score / total) * 100).toFixed(0);
+    function renderSectionOverview(sectionKey) {
+      const block = document.getElementById("section-overview-block");
+      const titleEl = document.getElementById("so-title");
+      const headingEl = document.getElementById("so-heading");
+      const contentEl = document.getElementById("so-content");
 
-      const answerKeyHTML = questions
-        .map((q, idx) => {
-          const ans = q.answer;
-          return `
-            <div class="answer-row">
-              <span class="qno">${idx + 1}.</span>
-              <span class="atext">${ans}</span>
-            </div>
-          `;
-        })
-        .join("");
+      const map = SECTION_MAPS[sectionKey];
+      if (!map) return;
 
-      return `
-        <div class="result-card">
-          <div class="result-header">
-            <strong>${section.title} – Section Completed ✅</strong>
-            <span>Score: ${progress.score} / ${total} (${percent}%)</span>
-          </div>
-          <div>
-            Review the correct answers below. Use the mental map to
-            understand any questions you missed.
-          </div>
-          <div class="answer-key">
-            ${answerKeyHTML}
-          </div>
-        </div>
+      block.style.display = "block";
+      titleEl.textContent = "Section Overview – " + SECTION_LABELS[sectionKey];
+      headingEl.textContent = map.title;
+      contentEl.innerHTML = map.content;
+      block.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function startSectionQuiz(sectionKey) {
+      currentSection = sectionKey;
+      currentQuestions = buildQuizForSection(sectionKey);
+      currentIndex = 0;
+      userAnswers = new Array(currentQuestions.length).fill(null);
+      resultsShown = false;
+
+      const label = SECTION_LABELS[sectionKey];
+      document.getElementById("quiz-section-name").textContent = label;
+      document.getElementById(
+        "quiz-question-count"
+      ).textContent = `(${currentQuestions.length} questions)`;
+
+      document.getElementById("quiz-container").classList.add("active");
+      document.getElementById("results-card").classList.remove("active");
+      document.getElementById("results-summary").textContent =
+        "Answer all questions and submit to see your score and correct answers.";
+      document.getElementById("attempt-status").textContent =
+        "Choose an option and then use Next / Previous to move around.";
+
+      // Load the map panel content
+      const panel = document.getElementById("section-map-panel");
+      const map = SECTION_MAPS[sectionKey];
+      panel.innerHTML = `
+        <h4>${map.title}</h4>
+        <ul>
+          ${map.content
+            .split("<br/>")
+            .filter((line) => line.trim() !== "")
+            .map((line) => `<li>${line.trim()}</li>`)
+            .join("")}
+        </ul>
       `;
+
+      panel.classList.remove("active");
+      document.getElementById("toggle-map-label").textContent =
+        "Show mental map while answering";
+
+      renderCurrentQuestion();
+      document
+        .getElementById("quiz-area")
+        .scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
-    /****************************************************
-     * 8. Main render switch
-     ****************************************************/
+    function renderCurrentQuestion() {
+      if (!currentQuestions.length) return;
 
-    function renderContent() {
-      const section = getSection(state.currentSectionId);
-      if (state.currentView === "overview") {
-        renderOverview(section);
+      const qObj = currentQuestions[currentIndex];
+      const total = currentQuestions.length;
+
+      document.getElementById(
+        "question-counter"
+      ).textContent = `Question ${currentIndex + 1} of ${total}`;
+      document.getElementById("question-text").textContent = qObj.question;
+
+      const progress = ((currentIndex + 1) / total) * 100;
+      document.getElementById("progress-bar").style.width = progress + "%";
+
+      const list = document.getElementById("options-list");
+      list.innerHTML = "";
+
+      const letters = ["A", "B", "C", "D"];
+      qObj.options.forEach((opt, idx) => {
+        const li = document.createElement("li");
+        li.className = "option-item";
+
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = "option";
+        input.value = idx;
+
+        const labelSpan = document.createElement("span");
+        labelSpan.className = "option-letter";
+        labelSpan.textContent = letters[idx];
+
+        const textSpan = document.createElement("span");
+        textSpan.className = "option-text";
+        textSpan.textContent = opt;
+
+        li.appendChild(input);
+        li.appendChild(labelSpan);
+        li.appendChild(textSpan);
+
+        // mark selected if user already chose
+        if (userAnswers[currentIndex] === idx) {
+          input.checked = true;
+          li.classList.add("selected");
+        }
+
+        li.addEventListener("click", () => {
+          // When clicking, select this option
+          userAnswers[currentIndex] = idx;
+          // update visual selection
+          document
+            .querySelectorAll(".option-item")
+            .forEach((item) => item.classList.remove("selected"));
+          li.classList.add("selected");
+          input.checked = true;
+          document.getElementById("attempt-status").textContent =
+            "Answer saved. Use Next or Previous to move.";
+        });
+
+        list.appendChild(li);
+      });
+
+      // disable prev / next at ends
+      document.getElementById("prev-btn").disabled = currentIndex === 0;
+      document.getElementById("next-btn").disabled =
+        currentIndex === total - 1;
+    }
+
+    function showResults() {
+      const total = currentQuestions.length;
+      let correct = 0;
+
+      const resultsList = document.getElementById("results-list");
+      resultsList.innerHTML = "";
+
+      currentQuestions.forEach((q, index) => {
+        const userAns = userAnswers[index];
+        const isCorrect = userAns === q.correctIndex;
+        if (isCorrect) correct++;
+
+        const item = document.createElement("div");
+        item.className = "result-item";
+
+        const header = document.createElement("div");
+        header.className = "result-item-header";
+
+        const left = document.createElement("div");
+        left.textContent = `Q${index + 1}`;
+
+        const pill = document.createElement("div");
+        pill.className =
+          "result-pill " + (isCorrect ? "correct" : "incorrect");
+        pill.innerHTML = isCorrect
+          ? "✔ Correct"
+          : userAns === null
+          ? "⚠ Not answered"
+          : "✖ Incorrect";
+
+        header.appendChild(left);
+        header.appendChild(pill);
+
+        const qText = document.createElement("div");
+        qText.className = "result-q";
+        qText.textContent = q.question;
+
+        const correctLine = document.createElement("div");
+        correctLine.className = "result-line";
+        correctLine.innerHTML =
+          "<strong>Correct answer:</strong> " + q.options[q.correctIndex];
+
+        const yourLine = document.createElement("div");
+        yourLine.className = "result-line";
+        yourLine.innerHTML =
+          "<strong>Your answer:</strong> " +
+          (userAns === null ? "Not answered" : q.options[userAns]);
+
+        item.appendChild(header);
+        item.appendChild(qText);
+        item.appendChild(correctLine);
+        item.appendChild(yourLine);
+
+        resultsList.appendChild(item);
+      });
+
+      const scoreLine = document.getElementById("results-score-line");
+      const summary = document.getElementById("results-summary");
+
+      const percent = Math.round((correct / total) * 100);
+      const cls = percent >= 60 ? "good" : "bad";
+
+      scoreLine.innerHTML = `You scored <span class="${cls}">${correct} / ${total}</span> (${percent}%)`;
+
+      if (percent === 100) {
+        summary.textContent = "Excellent! You have mastered this section.";
+      } else if (percent >= 60) {
+        summary.textContent =
+          "Good work! Revise the questions you got wrong, then try again.";
       } else {
-        renderQuiz(section);
+        summary.textContent =
+          "Keep practicing. Use the mental map to review the ideas, then retake the quiz.";
       }
+
+      document.getElementById("results-card").classList.add("active");
+      resultsShown = true;
     }
 
-    /****************************************************
-     * 9. Initialise
-     ****************************************************/
+    /* -----------------------------
+       Event wiring
+       ----------------------------- */
 
-    renderSectionNav();
-    setupViewToggle();
-    renderContent();
+    // Overview / Q&A buttons on section cards
+    document.querySelectorAll(".section-card .section-actions .btn").forEach(
+      (btn) => {
+        btn.addEventListener("click", () => {
+          const sectionKey = btn.getAttribute("data-section");
+          const action = btn.getAttribute("data-action");
+          if (!sectionKey || !action) return;
+
+          if (action === "overview") {
+            renderSectionOverview(sectionKey);
+          } else if (action === "quiz") {
+            startSectionQuiz(sectionKey);
+          }
+        });
+      }
+    );
+
+    // Next / Prev
+    document.getElementById("next-btn").addEventListener("click", () => {
+      if (currentIndex < currentQuestions.length - 1) {
+        currentIndex++;
+        renderCurrentQuestion();
+      }
+    });
+
+    document.getElementById("prev-btn").addEventListener("click", () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        renderCurrentQuestion();
+      }
+    });
+
+    // Submit section
+    document
+      .getElementById("submit-section-btn")
+      .addEventListener("click", () => {
+        if (!currentQuestions.length) return;
+
+        const unanswered = userAnswers.filter((v) => v === null).length;
+        if (unanswered > 0 && !confirm(
+          `You have not answered ${unanswered} question(s). Submit anyway and see answers?`
+        )) {
+          return;
+        }
+        showResults();
+      });
+
+    // Show / hide mental map panel while answering
+    document
+      .getElementById("toggle-map-btn")
+      .addEventListener("click", () => {
+        const panel = document.getElementById("section-map-panel");
+        panel.classList.toggle("active");
+        const label = document.getElementById("toggle-map-label");
+        if (panel.classList.contains("active")) {
+          label.textContent = "Hide mental map";
+        } else {
+          label.textContent = "Show mental map while answering";
+        }
+      });
+
+    // Reset section answers
+    document
+      .getElementById("reset-section-btn")
+      .addEventListener("click", () => {
+        if (
+          !currentQuestions.length ||
+          !confirm("Clear all your answers for this section?")
+        ) {
+          return;
+        }
+        userAnswers = new Array(currentQuestions.length).fill(null);
+        currentIndex = 0;
+        resultsShown = false;
+        document.getElementById("results-card").classList.remove("active");
+        renderCurrentQuestion();
+      });
+
+    // Retry section (from results)
+    document.getElementById("retry-btn").addEventListener("click", () => {
+      if (!currentSection) return;
+      startSectionQuiz(currentSection);
+    });
   </script>
 </body>
 </html>
