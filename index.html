@@ -723,6 +723,66 @@
       font-weight: 600;
     }
 
+    /* ----- FORMULAS OVERVIEW STYLING ----- */
+
+.overview-step {
+  margin-bottom: 1.5rem;
+}
+
+.overview-box {
+  background: #f9fafb;
+  border: 1px dashed #cbd5f5;
+  border-radius: 0.9rem;
+  padding: 0.8rem 1rem;
+  margin-top: 0.6rem;
+}
+
+.overview-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.5rem;
+  font-size: 0.88rem;
+}
+
+.overview-table th {
+  text-align: left;
+  background: #eff6ff;
+  padding: 0.45rem;
+  border: 1px solid #dbeafe;
+  font-weight: 600;
+}
+
+.overview-table td {
+  padding: 0.45rem;
+  border: 1px solid #e5e7eb;
+}
+
+.overview-separator {
+  border: none;
+  height: 1px;
+  background: #e5e7eb;
+  margin: 1.5rem 0;
+}
+
+.big-formula {
+  text-align: center;
+  font-size: 1.15rem;
+  margin-bottom: 0.8rem;
+}
+
+.formula-pair {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.mini-formula {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
     footer {
       text-align: center;
       margin-top: 2rem;
@@ -1406,21 +1466,73 @@
       },
       formulas: {
         title: "Formulas & Calculations – Mental Map",
-        content: `
-        Cartesian sign convention → object on left of mirror<br/>
-        ↓<br/>
-        Distances measured from pole (P) along principal axis<br/>
-        Right of P → positive, left of P → negative<br/>
-        Upwards from axis → positive, downwards → negative<br/>
-        ↓<br/>
-        Focal length signs → concave mirror: negative f, convex mirror: positive f<br/>
-        ↓<br/>
-        Mirror formula → 1/f = 1/v + 1/u<br/>
-        ↓<br/>
-        Magnification → M tells how big image is compared to object<br/>
-        M = h₂ / h₁ = v / u<br/>
-        Sign of height → negative height means real inverted image, positive height means virtual erect image
-      `,
+      <div class="overview-step">
+  <h4>🧭 Step 1: Cartesian Sign Convention</h4>
+
+  <div class="overview-box">
+    <p><strong>Where is “+” and where is “–”?</strong></p>
+
+    <table class="overview-table">
+      <tr><th>Direction</th><th>Sign</th></tr>
+      <tr><td>Right of Pole (P)</td><td>+</td></tr>
+      <tr><td>Left of Pole (P)</td><td>–</td></tr>
+      <tr><td>Upwards from axis</td><td>+</td></tr>
+      <tr><td>Downwards from axis</td><td>–</td></tr>
+    </table>
+
+    <p style="margin-top:0.6rem;"><strong>Focal Length (f)</strong></p>
+    <table class="overview-table">
+      <tr><th>Mirror Type</th><th>Sign of f</th></tr>
+      <tr><td>Concave mirror</td><td>– (negative)</td></tr>
+      <tr><td>Convex mirror</td><td>+ (positive)</td></tr>
+    </table>
+  </div>
+</div>
+
+<hr class="overview-separator"/>
+
+<div class="overview-step">
+  <h4>🪞 Step 2: Mirror Formula</h4>
+
+  <div class="overview-box">
+    <p class="big-formula"><strong>1/f = 1/v + 1/u</strong></p>
+
+    <ul class="overview-list">
+      <li><strong>f</strong> = focal length</li>
+      <li><strong>v</strong> = image distance</li>
+      <li><strong>u</strong> = object distance (always negative, because object is placed on the left)</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="overview-separator"/>
+
+<div class="overview-step">
+  <h4>🔍 Step 3: Magnification</h4>
+
+  <div class="overview-box">
+    <p><strong>Magnification (M)</strong> tells how big or small the image is compared to the object.</p>
+
+    <div class="formula-pair">
+      <div>
+        <p><strong>Using heights:</strong></p>
+        <p class="mini-formula">M = h₂ / h₁</p>
+      </div>
+      <div>
+        <p><strong>Using distances:</strong></p>
+        <p class="mini-formula">M = v / u</p>
+      </div>
+    </div>
+
+    <p><strong>Sign of Image Height (h₂)</strong></p>
+
+    <table class="overview-table">
+      <tr><th>Sign of h₂</th><th>Meaning</th></tr>
+      <tr><td>Negative (–)</td><td>Real & inverted image</td></tr>
+      <tr><td>Positive (+)</td><td>Virtual & erect image</td></tr>
+    </table>
+  </div>
+</div>
       },
       applications: {
         title: "Applications – Mental Map",
