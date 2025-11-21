@@ -253,12 +253,12 @@
 
     /* Section cards */
 
-    .section-grid {
-      display: grid;
-  grid-template-columns: repeat(3, minmax(220px, 1fr)); /* max 3 per row */
-  gap: 1.5rem 2rem;    /* space between cards */
-  justify-content: center;
-    }
+.section-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(220px, 1fr)); /* 3 per row on desktop */
+  gap: 1.5rem 1.5rem;
+  width: 100%;
+}
 
     .section-card {
       border-radius: 1rem;
@@ -370,6 +370,33 @@
       color: var(--text-muted);
     }
 
+    /* Keep cards flexible */
+.section-card {
+  width: 100%;
+}
+    /* ------------------------------- */
+/* TABLETS → 2 cards per row */
+/* ------------------------------- */
+@media (max-width: 992px) {
+  .section-grid {
+    grid-template-columns: repeat(2, minmax(200px, 1fr));
+  }
+}
+
+/* ------------------------------- */
+/* MOBILES → Single column layout */
+/* ------------------------------- */
+@media (max-width: 600px) {
+  .section-grid {
+    grid-template-columns: 1fr;   /* ONE card per row */
+    gap: 1.25rem;
+  }
+
+  .section-card {
+    padding: 1.1rem 1.25rem;       /* Slight breathing room */
+    margin: 0;
+  }
+}
     /* Quiz area */
 
     #quiz-area {
