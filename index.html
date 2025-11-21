@@ -155,110 +155,14 @@
       font-size: 1rem;
     }
 
-    .big-map {
-      position: relative;
-    }
-
-    .map-main-node {
-      background: var(--accent);
-      color: white;
-      padding: 0.7rem 0.9rem;
-      border-radius: 999px;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 1rem;
-      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.36);
-    }
-
-    .map-main-node small {
-      display: block;
-      font-weight: 400;
-      font-size: 0.78rem;
-      opacity: 0.9;
-    }
-
-    .map-arrow-down {
-      text-align: center;
-      font-size: 1.5rem;
-      margin-bottom: 0.8rem;
-      color: var(--accent-dark);
-    }
-
-    .map-branches {
-      display: flex;
-      flex-direction: column;
-      gap: 1.1rem; /* more space between branches */
-    }
-
-    .map-branch-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .map-node {
-      padding: 0.45rem 0.8rem;
-      border-radius: 999px;
-      border: 1px dashed #c4c4d4;
-      background: #f9fafb;
-      font-size: 0.87rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .map-node span.label {
-      font-weight: 600;
-    }
-
-    .map-node span.desc {
-      font-weight: 400;
-      color: var(--text-muted);
-      font-size: 0.78rem;
-    }
-
-    .map-arrow-right {
-      font-size: 1.1rem;
-      color: #9ca3af;
-    }
-
-    .how-to-list {
-      padding-left: 1.1rem;
-      margin: 0.4rem 0 0.9rem;
-      font-size: 0.9rem;
-    }
-
-    .how-to-list li {
-      margin-bottom: 0.35rem;
-    }
-
-    .pill-list {
-      list-style: none;
-      padding: 0;
-      margin: 0.4rem 0 0;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.35rem;
-      font-size: 0.83rem;
-    }
-
-    .pill-list li {
-      padding: 0.25rem 0.65rem;
-      border-radius: 999px;
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      white-space: nowrap;
-    }
-
     /* Section cards */
 
-.section-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(220px, 1fr)); /* 3 per row on desktop */
-  gap: 1.5rem 1.5rem;
-  width: 100%;
-}
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(220px, 1fr)); /* 3 per row on desktop */
+      gap: 1.5rem 1.5rem;
+      width: 100%;
+    }
 
     .section-card {
       border-radius: 1rem;
@@ -271,6 +175,7 @@
       gap: 0.6rem;
       position: relative;
       overflow: hidden;
+      width: 100%;
     }
 
     .section-card h3 {
@@ -370,33 +275,78 @@
       color: var(--text-muted);
     }
 
-    /* Keep cards flexible */
-.section-card {
-  width: 100%;
-}
-    /* ------------------------------- */
-/* TABLETS → 2 cards per row */
-/* ------------------------------- */
-@media (max-width: 992px) {
-  .section-grid {
-    grid-template-columns: repeat(2, minmax(200px, 1fr));
-  }
-}
+    /* Responsive layout for section cards */
 
-/* ------------------------------- */
-/* MOBILES → Single column layout */
-/* ------------------------------- */
-@media (max-width: 600px) {
-  .section-grid {
-    grid-template-columns: 1fr;   /* ONE card per row */
-    gap: 1.25rem;
-  }
+    @media (max-width: 992px) {
+      .section-grid {
+        grid-template-columns: repeat(2, minmax(200px, 1fr));
+      }
+    }
 
-  .section-card {
-    padding: 1.1rem 1.25rem;       /* Slight breathing room */
-    margin: 0;
-  }
-}
+    @media (max-width: 600px) {
+      .section-grid {
+        grid-template-columns: 1fr;   /* ONE card per row on mobiles */
+        gap: 1.25rem;
+      }
+
+      .section-card {
+        padding: 1.1rem 1.25rem;
+        margin: 0;
+      }
+    }
+
+    /* Nice step layout for Formulas & Calculations overview */
+
+    .flow-steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .flow-step {
+      position: relative;
+      padding-left: 1.8rem;
+    }
+
+    .flow-step::before {
+      content: attr(data-step);
+      position: absolute;
+      left: 0;
+      top: 0.1rem;
+      width: 1.3rem;
+      height: 1.3rem;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      border: 1px solid #bfdbfe;
+      color: var(--accent-dark);
+      font-size: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 600;
+    }
+
+    .flow-step-title {
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 0.2rem;
+    }
+
+    .flow-step-body {
+      font-size: 0.88rem;
+    }
+
+    .flow-subpoints {
+      margin: 0.2rem 0 0;
+      padding-left: 1.1rem;
+      font-size: 0.86rem;
+    }
+
     /* Quiz area */
 
     #quiz-area {
@@ -723,66 +673,6 @@
       font-weight: 600;
     }
 
-    /* ----- FORMULAS OVERVIEW STYLING ----- */
-
-.overview-step {
-  margin-bottom: 1.5rem;
-}
-
-.overview-box {
-  background: #f9fafb;
-  border: 1px dashed #cbd5f5;
-  border-radius: 0.9rem;
-  padding: 0.8rem 1rem;
-  margin-top: 0.6rem;
-}
-
-.overview-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 0.5rem;
-  font-size: 0.88rem;
-}
-
-.overview-table th {
-  text-align: left;
-  background: #eff6ff;
-  padding: 0.45rem;
-  border: 1px solid #dbeafe;
-  font-weight: 600;
-}
-
-.overview-table td {
-  padding: 0.45rem;
-  border: 1px solid #e5e7eb;
-}
-
-.overview-separator {
-  border: none;
-  height: 1px;
-  background: #e5e7eb;
-  margin: 1.5rem 0;
-}
-
-.big-formula {
-  text-align: center;
-  font-size: 1.15rem;
-  margin-bottom: 0.8rem;
-}
-
-.formula-pair {
-  display: flex;
-  gap: 1rem;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-bottom: 1rem;
-}
-
-.mini-formula {
-  font-size: 1rem;
-  font-weight: 600;
-}
-
     footer {
       text-align: center;
       margin-top: 2rem;
@@ -829,21 +719,22 @@
       </h2>
 
       <div class="overview-layout">
-        <!-- Big mental map -->
+        <!-- Big overview text -->
         <div class="card">
-    <h3>Mental Map: Light Reflection &amp; Mirrors</h3>
-    <p class="muted" style="margin-bottom: 0.6rem;">
-        Use this as a mental map for the whole chapter. The topic is clearly broken into
-        <strong>5 sections</strong>. Each section has:
-        <strong>Overview</strong> (concept map with arrows) and <strong>Q&amp;A</strong> (quiz).
-    </p>
-    <p class="muted" style="margin-bottom: 0.6rem;">
-        Click on the <strong>Overview</strong> in each section to get the <strong>Mental Map</strong> for the section.
-    </p>
-    <p class="muted" style="margin-bottom: 0.6rem;">
-        Click on the <strong>Start Q&amp;A</strong> in each section to attempt questions in this section for practice.
-    </p>
-</div>
+          <h3>Mental Map: Light Reflection &amp; Mirrors</h3>
+          <p class="muted" style="margin-bottom: 0.6rem;">
+            Use this as a mental map for the whole chapter. The topic is clearly broken into
+            <strong>5 sections</strong>. Each section has its own:
+            <strong>Overview</strong> (concept map) and <strong>Q&amp;A</strong> (quiz).
+          </p>
+          <p class="muted" style="margin-bottom: 0.6rem;">
+            Click on <strong>Overview</strong> in any section card to see the
+            <strong>mental map</strong> for that section.
+          </p>
+          <p class="muted" style="margin-bottom: 0.6rem;">
+            Click on <strong>Start Q&amp;A</strong> in that section to practice questions only from that part of the chapter.
+          </p>
+        </div>
 
         <!-- How to use this page -->
         <div class="card">
@@ -854,7 +745,7 @@
             <li>Click <strong>Q&amp;A</strong> to answer questions from that section.</li>
             <li>While answering, you can open the <strong>mental map on the side</strong> to help you.</li>
             <li>At the end of each section, you get your <strong>score</strong> and can see the correct answers.</li>
-          </ol>          
+          </ol>
         </div>
       </div>
     </section>
@@ -1419,133 +1310,254 @@
     const SECTION_MAPS = {
       plane: {
         title: "Plane Mirrors – Mental Map",
-        content: `
-        Plane mirror → flat reflective surface<br/>
-        ↓<br/>
-        Image in plane mirror → virtual, same size, same distance behind mirror as object in front<br/>
-        ↓<br/>
-        Left-right reversal → <strong>lateral inversion</strong><br/>
-        ↓<br/>
-        Minimum mirror height → half of person height to see full image<br/>
-        ↓<br/>
-        More than one mirror → formula for number of images: n = (360° / A) - 1
-      `,
+        overview: `
+          <p><strong>Plane Mirrors – Big Picture</strong></p>
+          <ul class="flow-steps">
+            <li class="flow-step" data-step="1">
+              <div class="flow-step-title">Flat reflecting surface</div>
+              <div class="flow-step-body">
+                A plane mirror is a flat, smooth, shining surface that reflects light.
+              </div>
+            </li>
+            <li class="flow-step" data-step="2">
+              <div class="flow-step-title">Image in a plane mirror</div>
+              <div class="flow-step-body">
+                The image is <strong>virtual</strong>, the <strong>same size</strong> as the object and appears the
+                <strong>same distance behind the mirror</strong> as the object is in front.
+              </div>
+            </li>
+            <li class="flow-step" data-step="3">
+              <div class="flow-step-title">Left–right reversal</div>
+              <div class="flow-step-body">
+                The mirror swaps left and right. This effect is called
+                <strong>lateral inversion</strong>.
+              </div>
+            </li>
+            <li class="flow-step" data-step="4">
+              <div class="flow-step-title">How tall should the mirror be?</div>
+              <div class="flow-step-body">
+                To see your full body, the minimum height of the mirror should be
+                <strong>half your height</strong>.
+              </div>
+            </li>
+            <li class="flow-step" data-step="5">
+              <div class="flow-step-title">Two plane mirrors</div>
+              <div class="flow-step-body">
+                When two plane mirrors are kept at an angle A, the number of images (n) is given by
+                <strong>n = (360° / A) - 1</strong>.
+              </div>
+            </li>
+          </ul>
+        `,
+        bullets: [
+          "Plane mirror: flat reflective surface.",
+          "Image is virtual, same size and same distance behind the mirror as the object in front.",
+          "Left–right reversal is called lateral inversion.",
+          "To see full body, mirror height should be half the height of the person.",
+          "Two mirrors at angle A: number of images n = (360° / A) - 1."
+        ],
       },
       spherical: {
         title: "Spherical Mirrors – Mental Map",
-        content: `
-        Spherical mirrors → parts of a sphere<br/>
-        ↓<br/>
-        Concave mirror → inner surface reflects (converging / focusing mirror)<br/>
-        Convex mirror → outer surface reflects (diverging / dispersing mirror)<br/>
-        ↓<br/>
-        Key points → pole (P), centre of curvature (C), radius of curvature (R)<br/>
-        ↓<br/>
-        Principal axis → line through P and C<br/>
-        ↓<br/>
-        Principal focus (F) → point where rays parallel to axis meet or appear to come from<br/>
-        ↓<br/>
-        Focal length (f) → distance PF, with relation f = R / 2
-      `,
+        overview: `
+          <p><strong>Spherical Mirrors – Big Picture</strong></p>
+          <ul class="flow-steps">
+            <li class="flow-step" data-step="1">
+              <div class="flow-step-title">Curved mirrors</div>
+              <div class="flow-step-body">
+                Spherical mirrors are pieces of a sphere. They can be
+                <strong>concave</strong> (curved inwards) or <strong>convex</strong> (curved outwards).
+              </div>
+            </li>
+            <li class="flow-step" data-step="2">
+              <div class="flow-step-title">Concave vs convex</div>
+              <div class="flow-step-body">
+                Concave mirror: inner surface reflects (converging / focusing mirror).<br/>
+                Convex mirror: outer surface reflects (diverging / dispersing mirror).
+              </div>
+            </li>
+            <li class="flow-step" data-step="3">
+              <div class="flow-step-title">Important points on the mirror</div>
+              <ul class="flow-subpoints">
+                <li><strong>Pole (P)</strong> – middle point of the mirror surface.</li>
+                <li><strong>Centre of curvature (C)</strong> – centre of the sphere from which the mirror is cut.</li>
+                <li><strong>Radius of curvature (R)</strong> – radius of that sphere.</li>
+              </ul>
+            </li>
+            <li class="flow-step" data-step="4">
+              <div class="flow-step-title">Principal axis & principal focus</div>
+              <div class="flow-step-body">
+                Principal axis: straight line through P and C.<br/>
+                Principal focus (F): point where rays parallel to the principal axis meet, or appear to come from.
+              </div>
+            </li>
+            <li class="flow-step" data-step="5">
+              <div class="flow-step-title">Focal length</div>
+              <div class="flow-step-body">
+                Focal length <strong>f</strong> is the distance PF, and it satisfies <strong>f = R / 2</strong>.
+              </div>
+            </li>
+          </ul>
+        `,
+        bullets: [
+          "Spherical mirrors are parts of a sphere.",
+          "Concave mirror: inner surface reflects (focusing / converging mirror).",
+          "Convex mirror: outer surface reflects (dispersing / diverging mirror).",
+          "Pole (P), centre of curvature (C) and radius of curvature (R) are key points.",
+          "Principal axis passes through P and C.",
+          "Principal focus (F): where parallel rays meet or appear to meet.",
+          "Focal length f = R / 2."
+        ],
       },
       image_formation: {
         title: "Image Formation – Mental Map",
-        content: `
-        Concave mirror → image depends on object position<br/>
-        ↓<br/>
-        Object very far (almost at infinity) → tiny real inverted image at focus<br/>
-        ↓<br/>
-        Object beyond C → real, inverted, smaller image between C and F<br/>
-        Object at C → real, inverted, same size image at C<br/>
-        Object between C and F → real, inverted, larger image beyond C<br/>
-        Object at F → real, inverted image at infinity, very large<br/>
-        Object between P and F → virtual, erect, magnified image behind mirror<br/>
-        ↓<br/>
-        Convex mirror → always virtual, erect, smaller image behind mirror
-      `,
+        overview: `
+          <p><strong>Image Formation – Big Picture</strong></p>
+          <ul class="flow-steps">
+            <li class="flow-step" data-step="1">
+              <div class="flow-step-title">Concave mirror – object very far away</div>
+              <div class="flow-step-body">
+                Object at a very large distance (almost at infinity) → tiny real, inverted image at the focus.
+              </div>
+            </li>
+            <li class="flow-step" data-step="2">
+              <div class="flow-step-title">Object beyond centre of curvature (C)</div>
+              <div class="flow-step-body">
+                Image forms between C and F → real, inverted, smaller than the object.
+              </div>
+            </li>
+            <li class="flow-step" data-step="3">
+              <div class="flow-step-title">Object at centre of curvature (C)</div>
+              <div class="flow-step-body">
+                Image forms at C → real, inverted, same size as the object.
+              </div>
+            </li>
+            <li class="flow-step" data-step="4">
+              <div class="flow-step-title">Object between C and F</div>
+              <div class="flow-step-body">
+                Image forms beyond C → real, inverted, bigger than the object.
+              </div>
+            </li>
+            <li class="flow-step" data-step="5">
+              <div class="flow-step-title">Object at focus (F)</div>
+              <div class="flow-step-body">
+                Image forms at infinity (very far away) → real, inverted and very large.
+              </div>
+            </li>
+            <li class="flow-step" data-step="6">
+              <div class="flow-step-title">Object between pole (P) and focus (F)</div>
+              <div class="flow-step-body">
+                Image forms behind the mirror → virtual, erect and magnified.
+              </div>
+            </li>
+            <li class="flow-step" data-step="7">
+              <div class="flow-step-title">Convex mirror</div>
+              <div class="flow-step-body">
+                For any object position → image is always virtual, erect and smaller, and appears behind the mirror.
+              </div>
+            </li>
+          </ul>
+        `,
+        bullets: [
+          "Concave mirror: image changes as object moves (infinity, beyond C, at C, between C and F, at F, between P and F).",
+          "Object at infinity → tiny real inverted image at focus.",
+          "Beyond C → real, inverted, smaller image between C and F.",
+          "At C → real, inverted, same size image at C.",
+          "Between C and F → real, inverted, magnified image beyond C.",
+          "At F → real, inverted image at infinity, very large.",
+          "Between P and F → virtual, erect, magnified image behind mirror.",
+          "Convex mirror → always virtual, erect, diminished image behind mirror."
+        ],
       },
       formulas: {
         title: "Formulas & Calculations – Mental Map",
-      <div class="overview-step">
-  <h4>🧭 Step 1: Cartesian Sign Convention</h4>
-
-  <div class="overview-box">
-    <p><strong>Where is “+” and where is “–”?</strong></p>
-
-    <table class="overview-table">
-      <tr><th>Direction</th><th>Sign</th></tr>
-      <tr><td>Right of Pole (P)</td><td>+</td></tr>
-      <tr><td>Left of Pole (P)</td><td>–</td></tr>
-      <tr><td>Upwards from axis</td><td>+</td></tr>
-      <tr><td>Downwards from axis</td><td>–</td></tr>
-    </table>
-
-    <p style="margin-top:0.6rem;"><strong>Focal Length (f)</strong></p>
-    <table class="overview-table">
-      <tr><th>Mirror Type</th><th>Sign of f</th></tr>
-      <tr><td>Concave mirror</td><td>– (negative)</td></tr>
-      <tr><td>Convex mirror</td><td>+ (positive)</td></tr>
-    </table>
-  </div>
-</div>
-
-<hr class="overview-separator"/>
-
-<div class="overview-step">
-  <h4>🪞 Step 2: Mirror Formula</h4>
-
-  <div class="overview-box">
-    <p class="big-formula"><strong>1/f = 1/v + 1/u</strong></p>
-
-    <ul class="overview-list">
-      <li><strong>f</strong> = focal length</li>
-      <li><strong>v</strong> = image distance</li>
-      <li><strong>u</strong> = object distance (always negative, because object is placed on the left)</li>
-    </ul>
-  </div>
-</div>
-
-<hr class="overview-separator"/>
-
-<div class="overview-step">
-  <h4>🔍 Step 3: Magnification</h4>
-
-  <div class="overview-box">
-    <p><strong>Magnification (M)</strong> tells how big or small the image is compared to the object.</p>
-
-    <div class="formula-pair">
-      <div>
-        <p><strong>Using heights:</strong></p>
-        <p class="mini-formula">M = h₂ / h₁</p>
-      </div>
-      <div>
-        <p><strong>Using distances:</strong></p>
-        <p class="mini-formula">M = v / u</p>
-      </div>
-    </div>
-
-    <p><strong>Sign of Image Height (h₂)</strong></p>
-
-    <table class="overview-table">
-      <tr><th>Sign of h₂</th><th>Meaning</th></tr>
-      <tr><td>Negative (–)</td><td>Real & inverted image</td></tr>
-      <tr><td>Positive (+)</td><td>Virtual & erect image</td></tr>
-    </table>
-  </div>
-</div>
+        overview: `
+          <p><strong>Formulas &amp; Calculations – Step-by-step</strong></p>
+          <ul class="flow-steps">
+            <li class="flow-step" data-step="1">
+              <div class="flow-step-title">Cartesian sign convention</div>
+              <div class="flow-step-body">
+                The object is always placed on the <strong>left side</strong> of the mirror.
+              </div>
+            </li>
+            <li class="flow-step" data-step="2">
+              <div class="flow-step-title">How distances are measured</div>
+              <ul class="flow-subpoints">
+                <li>All distances are measured from the <strong>pole (P)</strong> along the principal axis.</li>
+                <li><strong>Right of P</strong> → distances are taken as <strong>positive</strong>.</li>
+                <li><strong>Left of P</strong> → distances are taken as <strong>negative</strong>.</li>
+                <li><strong>Upwards</strong> from the axis → positive heights.</li>
+                <li><strong>Downwards</strong> from the axis → negative heights.</li>
+              </ul>
+            </li>
+            <li class="flow-step" data-step="3">
+              <div class="flow-step-title">Sign of focal length</div>
+              <div class="flow-step-body">
+                For a <strong>concave mirror</strong>, the focal length <strong>f is negative</strong>.<br/>
+                For a <strong>convex mirror</strong>, the focal length <strong>f is positive</strong>.
+              </div>
+            </li>
+            <li class="flow-step" data-step="4">
+              <div class="flow-step-title">Mirror formula</div>
+              <div class="flow-step-body">
+                The object distance (<strong>u</strong>), image distance (<strong>v</strong>) and focal length (<strong>f</strong>)
+                are related by:<br/>
+                <strong>1/f = 1/v + 1/u</strong>
+              </div>
+            </li>
+            <li class="flow-step" data-step="5">
+              <div class="flow-step-title">Magnification formulas</div>
+              <div class="flow-step-body">
+                Magnification <strong>M</strong> tells us how big the image is compared to the object.
+              </div>
+              <ul class="flow-subpoints">
+                <li>Using heights: <strong>M = h₂ / h₁</strong> (image height ÷ object height).</li>
+                <li>Using distances: <strong>M = v / u</strong>.</li>
+                <li>Sign of height: negative height → real, inverted image; positive height → virtual, erect image.</li>
+              </ul>
+            </li>
+          </ul>
+        `,
+        bullets: [
+          "Object is placed on the left side of the mirror.",
+          "Distances are measured from pole (P) along the principal axis.",
+          "Right of P → positive, left of P → negative.",
+          "Upwards from axis → positive heights, downwards → negative heights.",
+          "Concave mirror has negative focal length f.",
+          "Convex mirror has positive focal length f.",
+          "Mirror formula: 1/f = 1/v + 1/u.",
+          "Magnification M tells how big the image is compared to the object.",
+          "M = h₂ / h₁ and M = v / u.",
+          "Negative height → real, inverted image; positive height → virtual, erect image."
+        ],
       },
       applications: {
         title: "Applications – Mental Map",
-        content: `
-        Concave mirror → converging mirror<br/>
-        ↓<br/>
-        Dentists and barbers → concave mirror for magnified close-up view<br/>
-        Torches and vehicle headlamps → concave mirror to give parallel beam of light<br/>
-        ↓<br/>
-        Convex mirror → diverging mirror<br/>
-        ↓<br/>
-        Rear-view and side-view mirrors → convex mirror to see a wider area, image always smaller but erect
-      `,
+        overview: `
+          <p><strong>Applications – Where we use mirrors in real life</strong></p>
+          <ul class="flow-steps">
+            <li class="flow-step" data-step="1">
+              <div class="flow-step-title">Concave mirror – close up and bright beams</div>
+              <ul class="flow-subpoints">
+                <li><strong>Dentists and barbers</strong> use concave mirrors for a magnified close-up view.</li>
+                <li><strong>Torch and vehicle headlamps</strong> use concave mirrors to send a strong parallel beam of light.</li>
+              </ul>
+            </li>
+            <li class="flow-step" data-step="2">
+              <div class="flow-step-title">Convex mirror – wider view</div>
+              <ul class="flow-subpoints">
+                <li><strong>Rear-view and side-view mirrors</strong> in vehicles use convex mirrors.</li>
+                <li>They give a <strong>wider field of view</strong>. The image is <strong>smaller but erect</strong>, so you can see more traffic behind.</li>
+              </ul>
+            </li>
+          </ul>
+        `,
+        bullets: [
+          "Concave mirrors are used by dentists and barbers for magnified views.",
+          "Concave mirrors are used in torches and headlamps to produce parallel beams.",
+          "Convex mirrors are used as rear-view and side-view mirrors in vehicles.",
+          "Convex mirrors give a wider field of view; images are smaller but erect."
+        ],
       },
     };
 
@@ -1605,7 +1617,8 @@
       block.style.display = "block";
       titleEl.textContent = "Section Overview – " + SECTION_LABELS[sectionKey];
       headingEl.textContent = map.title;
-      contentEl.innerHTML = map.content;
+      contentEl.innerHTML = map.overview || "";
+
       block.scrollIntoView({ behavior: "smooth", block: "start" });
     }
 
@@ -1632,14 +1645,12 @@
       // Load the map panel content
       const panel = document.getElementById("section-map-panel");
       const map = SECTION_MAPS[sectionKey];
+
+      const bulletLines = map.bullets || [];
       panel.innerHTML = `
         <h4>${map.title}</h4>
         <ul>
-          ${map.content
-            .split("<br/>")
-            .filter((line) => line.trim() !== "")
-            .map((line) => `<li>${line.trim()}</li>`)
-            .join("")}
+          ${bulletLines.map((line) => `<li>${line}</li>`).join("")}
         </ul>
       `;
 
@@ -1841,9 +1852,12 @@
         if (!currentQuestions.length) return;
 
         const unanswered = userAnswers.filter((v) => v === null).length;
-        if (unanswered > 0 && !confirm(
-          `You have not answered ${unanswered} question(s). Submit anyway and see answers?`
-        )) {
+        if (
+          unanswered > 0 &&
+          !confirm(
+            `You have not answered ${unanswered} question(s). Submit anyway and see answers?`
+          )
+        ) {
           return;
         }
         showResults();
