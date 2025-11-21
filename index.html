@@ -915,206 +915,378 @@
      ****************************************************/
 
     const QUESTION_BANK = [
-      /* -------- Plane Mirrors (examples) -------- */
-      {
-        section: "plane",
-        question:
-          "For a plane mirror, how does the perpendicular distance of the image from the mirror compare to the perpendicular distance of the source from the mirror?",
-        answer:
-          "The perpendicular distance of the image from the mirror is equal to the perpendicular distance of the source from the mirror."
-      },
-      {
-        section: "plane",
-        question:
-          "What is the size of the image formed by a plane mirror relative to the size of the source?",
-        answer: "The image formed by a plane mirror is of the same size as the source."
-      },
-      {
-        section: "plane",
-        question:
-          "What is the phenomenon called when the image of a word appears reversed in a plane mirror?",
-        answer: "This phenomenon is called lateral inversion."
-      },
-      {
-        section: "plane",
-        question:
-          "What is the formula to calculate the number of images (n) formed when two plane mirrors are placed at an angle A to each other?",
-        answer: "n = (360°/A) − 1"
-      },
-      {
-        section: "plane",
-        question:
-          "To see the full image of a person standing in front of a mirror, the minimum height of the mirror must be _____ the height of the person.",
-        answer: "Half the height of the person."
-      },
-      {
-        section: "plane",
-        question: "What kind of image can be obtained on a screen?",
-        answer: "A real image."
-      },
-      {
-        section: "plane",
-        question:
-          "What kind of image is formed behind a mirror and cannot be obtained on a screen?",
-        answer: "A virtual image."
-      },
+  /* -------------------- PLANE MIRRORS -------------------- */
+  {
+    id: 1,
+    section: "plane",
+    question:
+      "In a plane mirror, how far does the image appear behind the mirror compared to how far the object is in front of it?",
+    answer:
+      "The perpendicular distance of the image from the mirror is equal to the perpendicular distance of the source from the mirror."
+  },
+  {
+    id: 2,
+    section: "plane",
+    question:
+      "How big is the image in a plane mirror compared to the object?",
+    answer:
+      "The image formed by a plane mirror is of the same size as the source."
+  },
+  {
+    id: 3,
+    section: "plane",
+    question:
+      "When letters appear flipped left-to-right in a mirror, what is this effect called?",
+    answer: "This phenomenon is called lateral inversion."
+  },
+  {
+    id: 4,
+    section: "plane",
+    question:
+      "If two plane mirrors are placed at an angle A, what formula helps you find how many images are formed?",
+    answer: "n = (360°/A) - 1"
+  },
+  {
+    id: 5,
+    section: "plane",
+    question:
+      "To see your full body in a mirror, what fraction of your height must the mirror be?",
+    answer: "half"
+  },
+  {
+    id: 49,
+    section: "plane",
+    question:
+      "What kind of image can be projected onto a screen in front of a class?",
+    answer: "A real image."
+  },
+  {
+    id: 50,
+    section: "plane",
+    question:
+      "What kind of image forms behind a mirror and cannot be shown on a screen?",
+    answer: "A virtual image."
+  },
 
-      /* -------- Spherical Mirrors (examples) -------- */
-      {
-        section: "spherical",
-        question: "What is a spherical mirror with an inner reflecting surface called?",
-        answer: "A concave mirror."
-      },
-      {
-        section: "spherical",
-        question: "What is a spherical mirror with an outer reflecting surface called?",
-        answer: "A convex mirror."
-      },
-      {
-        section: "spherical",
-        question:
-          "What is the term for the centre of the mirror surface in a spherical mirror?",
-        answer: "The pole (P)."
-      },
-      {
-        section: "spherical",
-        question:
-          "What is the term for the centre of the sphere of which the mirror is a part?",
-        answer: "The centre of curvature (C)."
-      },
-      {
-        section: "spherical",
-        question:
-          "What is the straight line passing through the pole and the centre of curvature of a spherical mirror called?",
-        answer: "The principal axis."
-      },
-      {
-        section: "spherical",
-        question:
-          "According to the relationship between focal length (f) and radius of curvature (R), how are they related in a spherical mirror?",
-        answer: "The focal length is half the radius of curvature (f = R/2)."
-      },
-      {
-        section: "spherical",
-        question:
-          "Rule 1 for ray diagrams: An incident ray parallel to the principal axis of a concave mirror, after reflection, passes through the ______.",
-        answer: "Principal focus (F)."
-      },
-      {
-        section: "spherical",
-        question:
-          "Rule 2 for ray diagrams: An incident ray passing through the principal focus of a concave mirror becomes ______ after reflection.",
-        answer: "Parallel to the principal axis."
-      },
+  /* -------------------- SPHERICAL MIRRORS -------------------- */
+  {
+    id: 6,
+    section: "spherical",
+    question:
+      "What do we call a spherical mirror that reflects light from its inner curved surface?",
+    answer: "It is called a concave mirror."
+  },
+  {
+    id: 7,
+    section: "spherical",
+    question:
+      "What do we call a spherical mirror that reflects light from its outer curved surface?",
+    answer: "It is called a convex mirror."
+  },
+  {
+    id: 8,
+    section: "spherical",
+    question:
+      "In a spherical mirror, what name is given to the centre of the mirror surface?",
+    answer: "The pole (P)."
+  },
+  {
+    id: 9,
+    section: "spherical",
+    question:
+      "What do we call the centre of the imaginary sphere from which the mirror is cut?",
+    answer: "The centre of curvature (C)."
+  },
+  {
+    id: 10,
+    section: "spherical",
+    question:
+      "What is the name of the radius of the imaginary sphere to which the mirror belongs?",
+    answer: "The radius of curvature (R)."
+  },
+  {
+    id: 11,
+    section: "spherical",
+    question:
+      "What is the straight line that passes through the pole and the centre of curvature called?",
+    answer: "It is called the principal axis."
+  },
+  {
+    id: 12,
+    section: "spherical",
+    question:
+      "Where do rays that are parallel to the principal axis meet after reflection from a concave mirror?",
+    answer: "The principal focus (F)."
+  },
+  {
+    id: 13,
+    section: "spherical",
+    question:
+      "In a convex mirror, parallel rays appear to come from which point after reflection?",
+    answer:
+      "They appear to come from a particular point behind the mirror."
+  },
+  {
+    id: 14,
+    section: "spherical",
+    question:
+      "What do we call the distance between the pole and the focus of a spherical mirror?",
+    answer: "It is called the focal length (f)."
+  },
+  {
+    id: 15,
+    section: "spherical",
+    question:
+      "How is the focal length related to the radius of curvature in spherical mirrors?",
+    answer: "The focal length is half of the radius of curvature, i.e., f = R/2."
+  },
+  {
+    id: 16,
+    section: "spherical",
+    question:
+      "If a ray strikes a concave mirror parallel to the principal axis, through which point does it pass after reflection?",
+    answer: "principal focus"
+  },
+  {
+    id: 17,
+    section: "spherical",
+    question:
+      "If a ray passes through the focus of a concave mirror before striking it, what happens after reflection?",
+    answer: "parallel to the principal axis"
+  },
+  {
+    id: 18,
+    section: "spherical",
+    question:
+      "What happens when a ray hits the concave mirror through the centre of curvature?",
+    answer: "The reflected ray traces the same path back."
+  },
+  {
+    id: 32,
+    section: "spherical",
+    question:
+      "Why is a concave mirror also called a converging or focusing mirror?",
+    answer: "focusing (or converging)"
+  },
+  {
+    id: 33,
+    section: "spherical",
+    question:
+      "Why is a convex mirror also called a diverging or spreading mirror?",
+    answer: "dispersing (or diverging)"
+  },
 
-      /* -------- Image Formation (examples) -------- */
-      {
-        section: "image_formation",
-        question:
-          "When an object is placed at a very large (infinite) distance from a concave mirror, where is the image formed and what is its nature?",
-        answer: "A point image, real and inverted, is formed at the focus."
-      },
-      {
-        section: "image_formation",
-        question:
-          "When an object is placed beyond the centre of curvature of a concave mirror, where is the image formed and what is its nature?",
-        answer:
-          "The image is formed between the centre of curvature and the focus, and is real, inverted and diminished."
-      },
-      {
-        section: "image_formation",
-        question:
-          "When an object is placed between the pole and the focus of a concave mirror, where is the image formed and what is its nature?",
-        answer: "The image is formed behind the mirror and is virtual, erect and magnified."
-      },
-      {
-        section: "image_formation",
-        question:
-          "For a convex mirror, where is the image always located, and what is its nature?",
-        answer:
-          "The image is always behind the mirror, virtual, erect and smaller than the object."
-      },
+  /* -------------------- IMAGE FORMATION -------------------- */
+  {
+    id: 19,
+    section: "image_formation",
+    question:
+      "If an object is very far away (almost at infinity), where does a concave mirror form its image?",
+    answer:
+      "A point image, which is real and inverted, is formed at the focus."
+  },
+  {
+    id: 20,
+    section: "image_formation",
+    question:
+      "If an object is placed beyond the centre of curvature of a concave mirror, roughly where will the image form?",
+    answer:
+      "The image is formed between the centre of curvature and the focus."
+  },
+  {
+    id: 21,
+    section: "image_formation",
+    question:
+      "If a concave mirror has an object placed beyond the centre of curvature, what kind of image will it produce?",
+    answer:
+      "The image is real, inverted, and diminished (smaller than the object)."
+  },
+  {
+    id: 22,
+    section: "image_formation",
+    question:
+      "If an object is placed at the centre of curvature of a concave mirror, where is the image formed?",
+    answer: "The image is formed at the centre of curvature."
+  },
+  {
+    id: 23,
+    section: "image_formation",
+    question:
+      "What kind of image does a concave mirror form when the object is exactly at the centre of curvature?",
+    answer:
+      "The image is real, inverted, and the same size as the object."
+  },
+  {
+    id: 24,
+    section: "image_formation",
+    question:
+      "If the object is placed between the focus and the centre of curvature of a concave mirror, where does the image form?",
+    answer: "The image is formed beyond the centre of curvature."
+  },
+  {
+    id: 25,
+    section: "image_formation",
+    question:
+      "What kind of image does a concave mirror form when the object is between the centre of curvature and the focus?",
+    answer:
+      "The image is real, inverted, and magnified (larger than the object)."
+  },
+  {
+    id: 26,
+    section: "image_formation",
+    question:
+      "If an object is kept at the focus of a concave mirror, where does its image form?",
+    answer:
+      "The image is formed at infinity; it is real, inverted, and highly enlarged (highly magnified)."
+  },
+  {
+    id: 27,
+    section: "image_formation",
+    question:
+      "What kind of image is produced when an object is kept at the focus of a concave mirror?",
+    answer:
+      "The image is real, inverted, and highly enlarged (formed at infinity)."
+  },
+  {
+    id: 28,
+    section: "image_formation",
+    question:
+      "If an object is placed between the pole and the focus of a concave mirror, where will the image appear?",
+    answer: "The image is formed behind the mirror."
+  },
+  {
+    id: 29,
+    section: "image_formation",
+    question:
+      "What kind of image is formed when an object is placed between the pole and the focus of a concave mirror?",
+    answer: "The image is virtual, erect, and magnified."
+  },
+  {
+    id: 30,
+    section: "image_formation",
+    question:
+      "No matter where you place an object in front of a convex mirror, what will the image always be like?",
+    answer:
+      "The image is always virtual, erect, and smaller than the object."
+  },
+  {
+    id: 31,
+    section: "image_formation",
+    question:
+      "Where does a convex mirror always form its image?",
+    answer: "The image is always situated behind the mirror."
+  },
 
-      /* -------- Formulas & Calculations (examples) -------- */
-      {
-        section: "formulas",
-        question:
-          "According to the Cartesian sign convention, on which side of the mirror is the object always placed?",
-        answer: "The object is always placed on the left side of the mirror."
-      },
-      {
-        section: "formulas",
-        question:
-          "According to the Cartesian sign convention, all distances parallel to the principal axis are measured from which point?",
-        answer: "From the pole (P) of the mirror."
-      },
-      {
-        section: "formulas",
-        question:
-          "According to the sign convention, what is the sign of the focal length of a concave mirror?",
-        answer: "The focal length of a concave mirror is negative."
-      },
-      {
-        section: "formulas",
-        question:
-          "According to the sign convention, what is the sign of the focal length of a convex mirror?",
-        answer: "The focal length of a convex mirror is positive."
-      },
-      {
-        section: "formulas",
-        question:
-          "What is the mirror formula that relates object distance (u), image distance (v) and focal length (f)?",
-        answer: "1/f = 1/v + 1/u."
-      },
-      {
-        section: "formulas",
-        question:
-          "What is the formula for magnification (M) in terms of the height of the image (h₂) and the height of the object (h₁)?",
-        answer: "M = h₂ / h₁."
-      },
-      {
-        section: "formulas",
-        question:
-          "What is the formula for magnification (M) in terms of the image distance (v) and the object distance (u)?",
-        answer: "M = v / u."
-      },
-      {
-        section: "formulas",
-        question:
-          "If the height of an object is positive, what does a negative height for the image signify?",
-        answer: "It signifies that the image is real and inverted."
-      },
-      {
-        section: "formulas",
-        question:
-          "If the height of an object is positive, what does a positive height for the image signify?",
-        answer: "It signifies that the image is virtual and erect."
-      },
+  /* -------------------- FORMULAS & CALCULATIONS -------------------- */
+  {
+    id: 37,
+    section: "formulas",
+    question:
+      "According to the sign convention, on which side of the mirror is the object always kept?",
+    answer: "The object is always placed on the left side of the mirror."
+  },
+  {
+    id: 38,
+    section: "formulas",
+    question:
+      "According to the sign convention, from which point are all distances measured?",
+    answer: "pole of the mirror."
+  },
+  {
+    id: 39,
+    section: "formulas",
+    question:
+      "In sign convention, what sign do we give to distances measured to the right of the pole? And to the left?",
+    answer: "positive; negative."
+  },
+  {
+    id: 40,
+    section: "formulas",
+    question:
+      "In sign convention, what sign is given to heights measured upward? And downward?",
+    answer: "positive; negative."
+  },
+  {
+    id: 41,
+    section: "formulas",
+    question:
+      "What is the sign of the focal length of a concave mirror?",
+    answer: "The focal length of a concave mirror is negative."
+  },
+  {
+    id: 42,
+    section: "formulas",
+    question:
+      "What is the sign of the focal length of a convex mirror?",
+    answer: "The focal length of a convex mirror is positive."
+  },
+  {
+    id: 43,
+    section: "formulas",
+    question:
+      "What is the mirror formula that relates object distance (u), image distance (v), and focal length (f)?",
+    answer: "1/f = 1/v + 1/u"
+  },
+  {
+    id: 44,
+    section: "formulas",
+    question:
+      "What does magnification (M) tell you about an image?",
+    answer:
+      "It tells us how large the image is as compared to the object."
+  },
+  {
+    id: 45,
+    section: "formulas",
+    question:
+      "What is the formula for magnification in terms of image height (h₂) and object height (h₁)?",
+    answer: "M = h₂ / h₁"
+  },
+  {
+    id: 46,
+    section: "formulas",
+    question:
+      "What is the formula for magnification in terms of image distance (v) and object distance (u)?",
+    answer: "M = v / u"
+  },
+  {
+    id: 47,
+    section: "formulas",
+    question:
+      "If the image height is negative, what does it tell you about the type of image?",
+    answer: "It signifies that the image is real and inverted."
+  },
+  {
+    id: 48,
+    section: "formulas",
+    question:
+      "If the image height is positive, what kind of image is it?",
+    answer: "It signifies that the image is virtual and erect."
+  },
 
-      /* -------- Applications (examples) -------- */
-      {
-        section: "applications",
-        question:
-          "Which type of mirror is used by dentists and in barber shops to get a magnified image of the face?",
-        answer: "A concave mirror."
-      },
-      {
-        section: "applications",
-        question:
-          "Which type of mirror is used in torches and headlamps of vehicles to obtain a parallel beam of light?",
-        answer: "A concave mirror."
-      },
-      {
-        section: "applications",
-        question:
-          "Which type of mirror is used as a rear-view mirror in cars and motorcycles?",
-        answer: "A convex mirror."
-      }
-
-      /* 👉 Add the rest of your questions here following the same pattern.
-         Use section: "plane" | "spherical" | "image_formation" | "formulas" | "applications"
-         and copy the question & correct answer text from your Excel sheet. */
-    ];
+  /* -------------------- APPLICATIONS -------------------- */
+  {
+    id: 34,
+    section: "applications",
+    question:
+      "Which mirror gives a magnified image and is used by dentists and barbers?",
+    answer: "A concave mirror."
+  },
+  {
+    id: 35,
+    section: "applications",
+    question:
+      "Which mirror is used in torches and car headlights to produce a strong, parallel beam of light?",
+    answer: "A concave mirror is used to obtain a parallel beam of light."
+  },
+  {
+    id: 36,
+    section: "applications",
+    question:
+      "Which type of mirror is used as a rear-view mirror in vehicles to give a wider field of view?",
+    answer: "A convex mirror."
+  }
+];
 
     /* Generic distractor pool for MCQs.
        You can customise or create specific distractors per question if you like. */
