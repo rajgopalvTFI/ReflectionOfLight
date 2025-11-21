@@ -255,8 +255,9 @@
 
     .section-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 1rem;
+  grid-template-columns: repeat(3, minmax(220px, 1fr)); /* max 3 per row */
+  gap: 1.5rem 2rem;    /* space between cards */
+  justify-content: center;
     }
 
     .section-card {
@@ -743,17 +744,19 @@
       <div class="overview-layout">
         <!-- Big mental map -->
         <div class="card">
-          <h3>Mental Map: Light Reflection &amp; Mirrors</h3>
-          <p class="muted" style="margin-bottom: 0.6rem;">
-            Use this as a mental map for the whole chapter. The topic is clearly broken into
-            <strong>5 sections</strong>. Each section has:
-            <strong>Overview</strong> (concept map with arrows) and <strong>Q&amp;A</strong> (quiz).
-            
-            Click on the <strong>Overview</strong> in each section to get the <strong>Mental Map</strong> for the section.
-            
-            Click on the <strong>Start Q&amp;A</strong> in each section to attempt questions in this section for practice.
-          </p>          
-        </div>
+    <h3>Mental Map: Light Reflection &amp; Mirrors</h3>
+    <p class="muted" style="margin-bottom: 0.6rem;">
+        Use this as a mental map for the whole chapter. The topic is clearly broken into
+        <strong>5 sections</strong>. Each section has:
+        <strong>Overview</strong> (concept map with arrows) and <strong>Q&amp;A</strong> (quiz).
+    </p>
+    <p class="muted" style="margin-bottom: 0.6rem;">
+        Click on the <strong>Overview</strong> in each section to get the <strong>Mental Map</strong> for the section.
+    </p>
+    <p class="muted" style="margin-bottom: 0.6rem;">
+        Click on the <strong>Start Q&amp;A</strong> in each section to attempt questions in this section for practice.
+    </p>
+</div>
 
         <!-- How to use this page -->
         <div class="card">
