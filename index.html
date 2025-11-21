@@ -1642,17 +1642,15 @@
       document.getElementById("attempt-status").textContent =
         "Choose an option and then use Next / Previous to move around.";
 
-      // Load the map panel content
-      const panel = document.getElementById("section-map-panel");
-      const map = SECTION_MAPS[sectionKey];
+      // Load FULL mental map (same as overview) inside Q&A side panel
+const panel = document.getElementById("section-map-panel");
+const map = SECTION_MAPS[sectionKey];
 
-      const bulletLines = map.bullets || [];
-      panel.innerHTML = `
-        <h4>${map.title}</h4>
-        <ul>
-          ${bulletLines.map((line) => `<li>${line}</li>`).join("")}
-        </ul>
-      `;
+panel.innerHTML = `
+  <h4>${map.title}</h4>
+  <div class="full-map-scroll">${map.overview}</div>
+`;
+
 
       panel.classList.remove("active");
       document.getElementById("toggle-map-label").textContent =
